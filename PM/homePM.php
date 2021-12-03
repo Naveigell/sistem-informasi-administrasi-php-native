@@ -54,62 +54,18 @@ if($_SESSION['Pass']==""){
   </head>
   <body style="background-color: #f8f9fa">
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#124191;">
-
-      <b style="color: #FFFFF0;" class="navbar-brand" href="">PENGELOLAAN DATA ADMINISTRASI INTISEL BALI</b>
-
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item active">
-          <a style="color: #FFFFF0;" class="navbar-brand" href="#">Welcome Back, <?php echo $_SESSION['Nama']; ?></a> &nbsp;    
-          <a class="navbar-brand" href="" data-target="#Profil" data-toggle="modal"><img class="btn btn-outline-primary" src="../assets/img/user.png" width="50"></a>
-        </li>
-      </ul>
-    </nav>
+    <?php include_once './../layouts/header.php'; ?>
 
     <div class="col-md-13 d-flex align-items-stretch">
-      <nav id="sidebar" class="img" style="background-image: url(images/bg_1.jpg);">
-        <div class="p-4">
-          <a class="navbar-brand" href="#"><img src="../assets/img/logo.png" width="50%"></a> <br><br> 
-          <ul class="list-unstyled components mb-5">
-            <li class="active">
-              <a href="homePM.php"><span class="fa fa-home mr-3"></span> Home</a>
-            </li>
-            <li>
-              <a href="KelolaDataUser.php"><span class="fa fa-table mr-3"></span> Data User</a>
-            </li>
-            <li>
-              <a href="#"><span class="fa fa-table mr-3"></span> </a>
-            </li>
-            <li>
-              <a href="#"><span class="fa fa-table mr-3"></span> </a>
-            </li>
-            <li>
-              <a href="#"><span class="fa fa-table mr-3"></span> </a>
-            </li>
-            <li>
-              <a href="#"><span class="fa fa-table mr-3"></span> </a>
-            </li>
-          </ul>
 
-          <div class="footer">
-            <p>
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> APDA All rights reserved</a>
-            </p>
-          </div>
+        <?php include_once './../layouts/sidebar.php'; ?>
 
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <h2 class="mb-4">Sidebar #06</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
-      </nav>
-
-      <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4">Sidebar #06</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
     </div>
 
     <script src="../assets/js/jquery.min.js"></script>
