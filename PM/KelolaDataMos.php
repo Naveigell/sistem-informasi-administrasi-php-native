@@ -65,16 +65,16 @@ $_SESSION['start_time'] = time();
         <center><?php
             if(isset($_GET['pesan'])){
                 if($_GET['pesan']=="suksesedit"){
-                    echo "<div class='alert alert-success'>Data User sudah berhasil di Edit !</div>";
+                    echo "<div class='alert alert-success'>Data Mos sudah berhasil di Edit !</div>";
                 }
                 else if($_GET['pesan']=="suksestambah"){
-                    echo "<div class='alert alert-success'>Data User sudah berhasil di Tambahkan !</div>";
+                    echo "<div class='alert alert-success'>Data Mos sudah berhasil di Tambahkan !</div>";
                 }
                 else if($_GET['pesan']=="gagaltambah"){
-                    echo "<div class='alert alert-danger'>Data User sudah pernah di Tambahkan !</div>";
+                    echo "<div class='alert alert-danger'>Data Mos sudah pernah di Tambahkan !</div>";
                 }
                 else if($_GET['pesan']=="sukseshapus"){
-                    echo "<div class='alert alert-success'>Data User sudah berhasil di Hapus !</div>";
+                    echo "<div class='alert alert-success'>Data Mos sudah berhasil di Hapus !</div>";
                 }
             }
             ?></center>
@@ -82,7 +82,6 @@ $_SESSION['start_time'] = time();
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
                     <th>No</th>
-                    <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Site Type</th>
                     <th>Pic On Site</th>
@@ -90,9 +89,9 @@ $_SESSION['start_time'] = time();
                     <th>Penanggung Jawab Vendor</th>
                     <th>Toco Name</th>
                     <th>Sow</th>
-                    <th>Upload Foto Material</th>
+                    <th>Foto Material</th>
+                    <th>Foto Pic On Site</th>
                     <th>Action</th>
-                    <th>Upload Foto Pic On Site</th>
                 </tr>
 
                 <?php
@@ -118,7 +117,6 @@ $_SESSION['start_time'] = time();
                         ?>
                         <tr align="rights">
                             <td><?= $no++; ?></td>
-                            <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $SiteType; ?></td>
                             <td><?= $PicOnSite; ?></td>
@@ -126,29 +124,33 @@ $_SESSION['start_time'] = time();
                             <td><?= $PenanggungJawabVendor; ?></td>
                             <td><?= $TocoName; ?></td>
                             <td><?= $Sow; ?></td>
-                            <td><?= $UploadFotoMaterial; ?></td>
-                            <td><?= $UploadFotoPicOnSite; ?></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $Id; ?>" data-toggle="modal"></button>
-                                <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $Id; ?>" data-toggle="modal"></button>
+                                <img src="./../assets/img/mos/<?= $UploadFotoMaterial; ?>" alt="" width="300px" height="300px">
+                            </td>
+                            <td>
+                                <img src="./../assets/img/mos/<?= $UploadFotoPicOnSite; ?>" alt="" width="300px" height="300px">
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
 
                                 <!-- Modal Hapus -->
-                                <div class="modal fade" id="hapus<?= $Id; ?>" role="dialog">
+                                <div class="modal fade" id="hapus<?= $SiteId; ?>" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php?Id=<?= $Id;?>">
+                                            <form method="POST" action="../aksi/mos/delete.php?SiteId=<?= $SiteId;?>">
                                                 <div class="modal-body">
                                                     <?php
-                                                    $user = mysqli_query($db, "SELECT * FROM tb_user WHERE Id='$Id'");
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_mos WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                         ?>
-                                                        <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+                                                        <input type="text" name="SiteId" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <center>
                                                             <i class="fa fa-close fa-5x" aria-hidden="true"></i>
-                                                            <h3>Yakin ingin menghapus User <strong><?= $result['Nama']; ?></strong> ?</h3>
+                                                            <h3>Yakin ingin menghapus Mos <strong><?= $result['SiteName']; ?></strong> ?</h3>
                                                         </center>
                                                         <?php
                                                     }
@@ -163,53 +165,62 @@ $_SESSION['start_time'] = time();
                                 </div>
 
                                 <!-- Modal Edit -->
-                                <div class="modal fade" id="edit<?= $Id; ?>" role="dialog">
+                                <div class="modal fade" id="edit<?= $SiteId; ?>" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php?Id=<?= $Id;?>">
+                                            <form method="POST" action="../aksi/mos/update.php?SiteId=<?= $SiteId;?>" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <?php
-                                                    $user = mysqli_query($db, "SELECT * FROM tb_user WHERE Id='$Id'");
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_mos WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                     ?>
-                                                    <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Nama">Nama</label>
-                                                        <input type="text" name="Nama" id="Nama" value="<?= $result['Nama']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="User">Username</label>
-                                                        <input type="text" name="User" id="User" value="<?= $result['User']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Pass">Password</label>
-                                                        <input type="text" name="Pass" id="Pass" value="<?= $result['Pass']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Email">Email</label>
-                                                        <input type="text" name="Email" id="Email" value="<?= $result['Email']; ?>" class="form-control" required>
+                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <div class="form-group">
-                                                            <label class="control-label" for="NoHp">No Hp</label>
-                                                            <input type="text" name="NoHp" id="NoHp" value="<?= $result['NoHp']; ?>" class="form-control" required>
-                                                            <div class="form-group">
-                                                                <label class="control-label" for="Level">Level</label>
-                                                                <select name="Level" value="<?= $result['Level']; ?>"class="form-control" required>
-                                                                    <option value="PM">PM</option>
-                                                                    <option value="Admin">Admin</option>
-                                                                    <option value="Team Leader">Team Leader</option>
-                                                                </select>
-                                                            </div>
-                                                            <?php
-                                                            }
-                                                            ?>
+                                                            <label class="control-label" for="SiteName">Site Name</label>
+                                                            <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required value="<?= $result['SiteName']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteType">Site Type</label>
+                                                            <input type="text" name="SiteType" id="SiteType" placeholder="Masukkan Username" class="form-control" required value="<?= $result['SiteType']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="PicOnSite">Pic On Site</label>
+                                                            <input type="text" name="PicOnSite" id="PicOnSite" placeholder="Masukkan Pic On Site" class="form-control" required value="<?= $result['PicOnSite']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="NoTelpPic">No Telp Pic</label>
+                                                            <input type="text" name="NoTelpPic" id="NoTelpPic" placeholder="Masukkan No Telp Pic" class="form-control" required value="<?= $result['NoTelpPic']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="PenanggungJawabVendor">Penanggung Jawab Vendor</label>
+                                                            <input type="text" name="PenanggungJawabVendor" id="PenanggungJawabVendor" placeholder="Masukkan Penanggung Jawab Vendor" class="form-control" required value="<?= $result['PenanggungJawabVendor']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TocoName">Toco Name</label>
+                                                            <input type="text" name="TocoName" id="TocoName" placeholder="Masukkan Toco Name" class="form-control" required value="<?= $result['TocoName']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="Sow">Sow</label>
+                                                            <input type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required value="<?= $result['Sow']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="UploadFotoMaterial">Upload Foto Material</label>
+                                                            <input type="file" name="UploadFotoMaterial" id="UploadFotoMaterial" placeholder="Upload Foto Material" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="UploadFotoPicOnSite">Upload Foto Pic On Site</label>
+                                                            <input type="file" name="UploadFotoPicOnSite" id="UploadFotoPicOnSite" placeholder="Upload Foto Pic On Site" class="form-control" required>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" class="btn btn-success" name="btnEdit">Edit</button>
                                                         </div>
-                                                    </div>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -223,39 +234,55 @@ $_SESSION['start_time'] = time();
                 <tr align="center">
 
                     <!-- Modal Tambah -->
-                    <div class="modal fade" id="tambahkanuser" role="dialog">
+                    <div class="modal fade" id="tambahkanmos" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4>Form Tambah Mos</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                                <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php">
+                                <form method="POST" action="./../aksi/mos/insert.php" enctype="multipart/form-data">
                                     <div class="modal-body">
 
                                         <div class="form-group">
-                                            <label class="control-label" for="Nama">Site Name</label>
-                                            <input type="text" name="Nama" id="Nama" placeholder="Masukkan Nama" class="form-control" required>
+                                            <label class="control-label" for="SiteName">Site Name</label>
+                                            <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="User">Site Type</label>
-                                            <input type="text" name="User" id="User" placeholder="Masukkan Username" class="form-control" required>
+                                            <label class="control-label" for="SiteType">Site Type</label>
+                                            <input type="text" name="SiteType" id="SiteType" placeholder="Masukkan Username" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="Pass">Pic On Site</label>
-                                            <input type="text" name="Pass" id="Pass" placeholder="Masukkan Password" class="form-control" required>
+                                            <label class="control-label" for="PicOnSite">Pic On Site</label>
+                                            <input type="text" name="PicOnSite" id="PicOnSite" placeholder="Masukkan Pic On Site" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="Email">No Telp Pic</label>
-                                            <input type="text" name="Email" id="Email" placeholder="Masukkan Email" class="form-control" required>
-                                            <div class="form-group">
-                                                <label class="control-label" for="NoHp">Penanggung Jawab Vendor</label>
-                                                <input type="text" name="NoHp" id="NoHp" placeholder="Masukkan No Hp" class="form-control" required>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success btn-sm" name="tambahuser">Tambah</button>
-                                                <button type="reset" class="btn btn-danger btn-sm" name="Reset">Reset</button>
-                                            </div>
+                                            <label class="control-label" for="NoTelpPic">No Telp Pic</label>
+                                            <input type="text" name="NoTelpPic" id="NoTelpPic" placeholder="Masukkan No Telp Pic" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="PenanggungJawabVendor">Penanggung Jawab Vendor</label>
+                                            <input type="text" name="PenanggungJawabVendor" id="PenanggungJawabVendor" placeholder="Masukkan Penanggung Jawab Vendor" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="TocoName">Toco Name</label>
+                                            <input type="text" name="TocoName" id="TocoName" placeholder="Masukkan Toco Name" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="Sow">Sow</label>
+                                            <input type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="UploadFotoMaterial">Upload Foto Material</label>
+                                            <input type="file" name="UploadFotoMaterial" id="UploadFotoMaterial" placeholder="Upload Foto Material" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="UploadFotoPicOnSite">Upload Foto Pic On Site</label>
+                                            <input type="file" name="UploadFotoPicOnSite" id="UploadFotoPicOnSite" placeholder="Upload Foto Pic On Site" class="form-control" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success btn-sm" name="tambahmos">Tambah</button>
+                                            <button type="reset" class="btn btn-danger btn-sm" name="Reset">Reset</button>
                                         </div>
                                 </form>
                             </div>
@@ -266,7 +293,7 @@ $_SESSION['start_time'] = time();
 
             </table>
             <div style="float: left;">
-                <button type="button" class="btn btn-success fa fa-plus fa-7x" data-target="#tambahkanuser" data-toggle="modal"> Tambah Data User Baru </button>
+                <button type="button" class="btn btn-success fa fa-plus fa-7x" data-target="#tambahkanmos" data-toggle="modal"> Tambah Data Mos Baru </button>
             </div>
         </div>
     </div>
