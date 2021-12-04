@@ -22,9 +22,9 @@ if (isset($_POST['btnEdit']))
         $query = "UPDATE tb_mos SET SiteName = '$SiteName', SiteType = '$SiteType', PicOnSite = '$PicOnSite', NoTelpPic = '$NoTelpPic', PenanggungJawabVendor = '$PenanggungJawabVendor', TocoName = '$TocoName', Sow = '$Sow', UploadFotoMaterial = '$UploadFotoMaterial', UploadFotoPicOnSite = '$UploadFotoPicOnSite' WHERE SiteId='$SiteId'";
         $result = mysqli_query($db, $query);
 
-//        header("location: ./../../PM/KelolaDataMos.php?pesan=suksestambah");
+        header("location: ./../../PM/KelolaDataMos.php?pesan=suksestambah");
     } else {
 
-//        header("location: ./../../PM/KelolaDataUser.php?pesan=gagaltambah");
+        header("location: ./../../PM/KelolaDataMos.php?pesan=gagaltambah");
     }
 }

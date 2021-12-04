@@ -133,6 +133,7 @@ $_SESSION['start_time'] = time();
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
                                 <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <button type="button" class="btn btn-success btn-sm fa fa-eye" data-target="#detail<?= $SiteId; ?>" data-toggle="modal"></button>
 
                                 <!-- Modal Hapus -->
                                 <div class="modal fade" id="hapus<?= $SiteId; ?>" role="dialog">
@@ -225,6 +226,64 @@ $_SESSION['start_time'] = time();
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="modal fade" id="detail<?= $SiteId; ?>" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <form enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    <?php
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_mos WHERE SiteId='$SiteId'");
+                                                    while ($result = mysqli_fetch_assoc($user)) {
+                                                        ?>
+                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteName">Site Name</label>
+                                                            <input type="text" disabled name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required value="<?= $result['SiteName']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteType">Site Type</label>
+                                                            <input type="text" disabled name="SiteType" id="SiteType" placeholder="Masukkan Username" class="form-control" required value="<?= $result['SiteType']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="PicOnSite">Pic On Site</label>
+                                                            <input type="text" disabled name="PicOnSite" id="PicOnSite" placeholder="Masukkan Pic On Site" class="form-control" required value="<?= $result['PicOnSite']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="NoTelpPic">No Telp Pic</label>
+                                                            <input type="text" disabled name="NoTelpPic" id="NoTelpPic" placeholder="Masukkan No Telp Pic" class="form-control" required value="<?= $result['NoTelpPic']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="PenanggungJawabVendor">Penanggung Jawab Vendor</label>
+                                                            <input type="text" disabled name="PenanggungJawabVendor" id="PenanggungJawabVendor" placeholder="Masukkan Penanggung Jawab Vendor" class="form-control" required value="<?= $result['PenanggungJawabVendor']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TocoName">Toco Name</label>
+                                                            <input type="text" disabled name="TocoName" id="TocoName" placeholder="Masukkan Toco Name" class="form-control" required value="<?= $result['TocoName']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="Sow">Sow</label>
+                                                            <input type="text" disabled name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required value="<?= $result['Sow']; ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="UploadFotoMaterial">Upload Foto Material</label>
+                                                            <img src="./../assets/img/mos/<?= $result['UploadFotoMaterial']; ?>" alt="" width="300px" height="300px">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="UploadFotoPicOnSite">Upload Foto Pic On Site</label>
+                                                            <img src="./../assets/img/mos/<?= $result['UploadFotoPicOnSite']; ?>" alt="" width="300px" height="300px">
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <?php
@@ -274,11 +333,65 @@ $_SESSION['start_time'] = time();
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="UploadFotoMaterial">Upload Foto Material</label>
-                                            <input type="file" name="UploadFotoMaterial" id="UploadFotoMaterial" placeholder="Upload Foto Material" class="form-control" required>
+                                            <input type="file" name="UploadFotoMaterial" id="UploadFotoMaterial" placeholder="Upload Foto Material" accept="image/jpeg,image/jpg,image/png" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="UploadFotoPicOnSite">Upload Foto Pic On Site</label>
-                                            <input type="file" name="UploadFotoPicOnSite" id="UploadFotoPicOnSite" placeholder="Upload Foto Pic On Site" class="form-control" required>
+                                            <input type="file" name="UploadFotoPicOnSite" id="UploadFotoPicOnSite" placeholder="Upload Foto Pic On Site" accept="image/jpeg,image/jpg,image/png" class="form-control" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success btn-sm" name="tambahmos">Tambah</button>
+                                            <button type="reset" class="btn btn-danger btn-sm" name="Reset">Reset</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="tambahkanmos" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Form Tambah Mos</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <form method="POST" action="./../aksi/mos/insert.php" enctype="multipart/form-data">
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteName">Site Name</label>
+                                            <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteType">Site Type</label>
+                                            <input type="text" name="SiteType" id="SiteType" placeholder="Masukkan Username" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="PicOnSite">Pic On Site</label>
+                                            <input type="text" name="PicOnSite" id="PicOnSite" placeholder="Masukkan Pic On Site" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="NoTelpPic">No Telp Pic</label>
+                                            <input type="text" name="NoTelpPic" id="NoTelpPic" placeholder="Masukkan No Telp Pic" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="PenanggungJawabVendor">Penanggung Jawab Vendor</label>
+                                            <input type="text" name="PenanggungJawabVendor" id="PenanggungJawabVendor" placeholder="Masukkan Penanggung Jawab Vendor" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="TocoName">Toco Name</label>
+                                            <input type="text" name="TocoName" id="TocoName" placeholder="Masukkan Toco Name" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="Sow">Sow</label>
+                                            <input type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="UploadFotoMaterial">Upload Foto Material</label>
+                                            <input type="file" name="UploadFotoMaterial" id="UploadFotoMaterial" placeholder="Upload Foto Material" accept="image/jpeg,image/jpg,image/png" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="UploadFotoPicOnSite">Upload Foto Pic On Site</label>
+                                            <input type="file" name="UploadFotoPicOnSite" id="UploadFotoPicOnSite" placeholder="Upload Foto Pic On Site" accept="image/jpeg,image/jpg,image/png" class="form-control" required>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-success btn-sm" name="tambahmos">Tambah</button>

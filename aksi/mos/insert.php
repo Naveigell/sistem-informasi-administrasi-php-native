@@ -25,6 +25,6 @@ if (isset($_POST['tambahmos']))
         header("location: ./../../PM/KelolaDataMos.php?pesan=suksestambah");
     } else {
 
-        header("location: ./../../PM/KelolaDataUser.php?pesan=gagaltambah");
+        header("location: ./../../PM/KelolaDataMos.php?pesan=gagaltambah");
     }
 }
