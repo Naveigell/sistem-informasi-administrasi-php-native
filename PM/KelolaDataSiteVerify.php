@@ -61,17 +61,32 @@ $_SESSION['start_time'] = time();
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 table-responsive">
         <h2 class="mb-4">Table User</h2>
+        <center><?php
+            if(isset($_GET['pesan'])){
+                if($_GET['pesan']=="suksesedit"){
+                    echo "<div class='alert alert-success'>Data Site Verify sudah berhasil di Edit !</div>";
+                }
+                else if($_GET['pesan']=="suksestambah"){
+                    echo "<div class='alert alert-success'>Data Site Verify sudah berhasil di Tambahkan !</div>";
+                }
+                else if($_GET['pesan']=="gagaltambah"){
+                    echo "<div class='alert alert-danger'>Data Site Verify sudah pernah di Tambahkan !</div>";
+                }
+                else if($_GET['pesan']=="sukseshapus"){
+                    echo "<div class='alert alert-success'>Data Site Verify sudah berhasil di Hapus !</div>";
+                }
+            }
+            ?></center>
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Email</th>
-                    <th>No Hp</th>
-                    <th>Level</th>
-                    <th>Action</th>
+                    <th>Site Name</th>
+                    <th>TocoName</th>
+                    <th>Sow</th>
+                    <th>UploadFotoCobmetTerbuka</th>
+                    <th>ViewAntemna</th>
+                    <th>Aksi</th>
                 </tr>
 
                 <?php
@@ -79,48 +94,50 @@ $_SESSION['start_time'] = time();
                 if (!$db) {echo "Connection Timeout";}
                 else
                 {
-                    $getData = mysqli_query($db, "SELECT * FROM tb_user ORDER by Id ASC");
+                    $getData = mysqli_query($db, "SELECT * FROM tb_site_verify ORDER by SiteId ASC");
                     // Fetch Data from Database to array
                     $no = 1;
                     while ($data = mysqli_fetch_assoc($getData))
                     {
-                        $Id                   = $data['Id'];
-                        $Nama                 = $data['Nama'];
-                        $User                 = $data['User'];
-                        $Pass                 = $data['Pass'];
-                        $Email                = $data['Email'];
-                        $NoHp                 = $data['NoHp'];
-                        $Level                = $data['Level'];
+                        $SiteId                     = $data['SiteId'];
+                        $SiteName                   = $data['SiteName'];
+                        $TocoName                   = $data['TocoName'];
+                        $Sow                        = $data['Sow'];
+                        $UploadFotoCobmetTerbuka    = $data['UploadFotoCobmetTerbuka'];
+                        $ViewAntemna                = $data['ViewAntemna'];
+
                         ?>
                         <tr align="rights">
                             <td><?= $no++; ?></td>
-                            <td><?= $Nama; ?></td>
-                            <td><?= $User; ?></td>
-                            <td><?= $Pass; ?></td>
-                            <td><?= $Email; ?></td>
-                            <td><?= $NoHp; ?></td>
-                            <td><?= $Level; ?></td>
+                            <td><?= $SiteName; ?></td>
+                            <td><?= $TocoName; ?></td>
+                            <td><?= $Sow; ?></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $Id; ?>" data-toggle="modal"></button>
-                                <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $Id; ?>" data-toggle="modal"></button>
+                                <img src="./../assets/img/site_verify/<?= $UploadFotoCobmetTerbuka; ?>" alt="" width="300px" height="300px">
+                            </td>
+                            <td><?= $ViewAntemna; ?></td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <button type="button" class="btn btn-primary btn-sm fa fa-eye" data-target="#detail<?= $SiteId; ?>" data-toggle="modal"></button>
 
                                 <!-- Modal Hapus -->
-                                <div class="modal fade" id="hapus<?= $Id; ?>" role="dialog">
+                                <div class="modal fade" id="hapus<?= $SiteId; ?>" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php?Id=<?= $Id;?>">
+                                            <form method="POST" action="../aksi/site_verify/delete.php?Id=<?= $SiteId;?>">
                                                 <div class="modal-body">
                                                     <?php
-                                                    $user = mysqli_query($db, "SELECT * FROM tb_user WHERE Id='$Id'");
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_site_verify WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                         ?>
-                                                        <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <center>
                                                             <i class="fa fa-close fa-5x" aria-hidden="true"></i>
-                                                            <h3>Yakin ingin menghapus User <strong><?= $result['Nama']; ?></strong> ?</h3>
+                                                            <h3>Yakin ingin menghapus Site Verify <strong><?= $result['SiteName']; ?></strong> ?</h3>
                                                         </center>
                                                         <?php
                                                     }
@@ -135,52 +152,84 @@ $_SESSION['start_time'] = time();
                                 </div>
 
                                 <!-- Modal Edit -->
-                                <div class="modal fade" id="edit<?= $Id; ?>" role="dialog">
+                                <div class="modal fade" id="edit<?= $SiteId; ?>" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php?Id=<?= $Id;?>">
+                                            <form method="POST" action="../aksi/site_verify/update.php?Id=<?= $SiteId;?>" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <?php
-                                                    $user = mysqli_query($db, "SELECT * FROM tb_user WHERE Id='$Id'");
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_site_verify WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                     ?>
-                                                    <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Nama">Nama</label>
-                                                        <input type="text" name="Nama" id="Nama" value="<?= $result['Nama']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="User">Username</label>
-                                                        <input type="text" name="User" id="User" value="<?= $result['User']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Pass">Password</label>
-                                                        <input type="text" name="Pass" id="Pass" value="<?= $result['Pass']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Email">Email</label>
-                                                        <input type="text" name="Email" id="Email" value="<?= $result['Email']; ?>" class="form-control" required>
+                                                    <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <div class="form-group">
-                                                            <label class="control-label" for="NoHp">No Hp</label>
-                                                            <input type="text" name="NoHp" id="NoHp" value="<?= $result['NoHp']; ?>" class="form-control" required>
-                                                            <div class="form-group">
-                                                                <label class="control-label" for="Level">Level</label>
-                                                                <select name="Level" value="<?= $result['Level']; ?>"class="form-control" required>
-                                                                    <option value="PM">PM</option>
-                                                                    <option value="Admin">Admin</option>
-                                                                    <option value="Team Leader">Team Leader</option>
-                                                                </select>
-                                                            </div>
-                                                            <?php
-                                                            }
-                                                            ?>
+                                                            <label class="control-label" for="SiteName">Site Nama</label>
+                                                            <input value="<?= $result['SiteName']; ?>" type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-success" name="btnEdit">Edit</button>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TocoName">TocoName</label>
+                                                            <input value="<?= $result['TocoName']; ?>" type="text" name="TocoName" id="TocoName" placeholder="Masukkan Toco Name" class="form-control" required>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="Sow">Sow</label>
+                                                            <input value="<?= $result['Sow']; ?>" type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="UploadFotoCobmetTerbuka">Upload Foto Cobmet Terbuka</label>
+                                                            <input type="file" name="UploadFotoCobmetTerbuka" id="UploadFotoCobmetTerbuka" placeholder="Masukkan Upload Foto Cobmet Terbuka" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="ViewAntemna">View Antemna</label>
+                                                            <input value="<?= $result['ViewAntemna']; ?>" type="text" name="ViewAntemna" id="ViewAntemna" placeholder="Masukkan View Antemna" class="form-control" required>
+                                                        </div>
+                                                    <?php } ?>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-success" name="btnEdit">Edit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="detail<?= $SiteId; ?>" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <form enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    <?php
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_site_verify WHERE SiteId='$SiteId'");
+                                                    while ($result = mysqli_fetch_assoc($user)) {
+                                                        ?>
+                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteName">Site Nama</label>
+                                                            <input disabled value="<?= $result['SiteName']; ?>" type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TocoName">TocoName</label>
+                                                            <input disabled value="<?= $result['TocoName']; ?>" type="text" name="TocoName" id="TocoName" placeholder="Masukkan Toco Name" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="Sow">Sow</label>
+                                                            <input disabled value="<?= $result['Sow']; ?>" type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="UploadFotoCobmetTerbuka">Foto Cobmet Terbuka</label>
+                                                            <img src="./../assets/img/site_verify/<?= $result['UploadFotoCobmetTerbuka']; ?>" alt="" width="300px" height="300px">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="ViewAntemna">View Antemna</label>
+                                                            <input disabled value="<?= $result['ViewAntemna']; ?>" type="text" name="ViewAntemna" id="ViewAntemna" placeholder="Masukkan View Antemna" class="form-control" required>
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -201,41 +250,33 @@ $_SESSION['start_time'] = time();
                                     <h4>Form Tambah User</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                                <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php">
+                                <form method="POST" action="../aksi/site_verify/insert.php" enctype="multipart/form-data">
                                     <div class="modal-body">
-
                                         <div class="form-group">
-                                            <label class="control-label" for="Nama">Nama</label>
-                                            <input type="text" name="Nama" id="Nama" placeholder="Masukkan Nama" class="form-control" required>
+                                            <label class="control-label" for="SiteName">Site Nama</label>
+                                            <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="User">Username</label>
-                                            <input type="text" name="User" id="User" placeholder="Masukkan Username" class="form-control" required>
+                                            <label class="control-label" for="TocoName">TocoName</label>
+                                            <input type="text" name="TocoName" id="TocoName" placeholder="Masukkan Toco Name" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="Pass">Password</label>
-                                            <input type="text" name="Pass" id="Pass" placeholder="Masukkan Password" class="form-control" required>
+                                            <label class="control-label" for="Sow">Sow</label>
+                                            <input type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="Email">Email</label>
-                                            <input type="text" name="Email" id="Email" placeholder="Masukkan Email" class="form-control" required>
-                                            <div class="form-group">
-                                                <label class="control-label" for="NoHp">No Hp</label>
-                                                <input type="number" name="NoHp" id="NoHp" placeholder="Masukkan No Hp" class="form-control" required>
-                                                <div class="form-group">
-                                                    <label class="control-label" for="Level">Level</label>
-                                                    <select name="Level" class="form-control" required>
-                                                        <option value="" hidden >Masukkan Level User</option>
-                                                        <option value="PM">PM</option>
-                                                        <option value="Admin">Admin</option>
-                                                        <option value="Team Leader">Team Leader</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success btn-sm" name="tambahuser">Tambah</button>
-                                                <button type="reset" class="btn btn-danger btn-sm" name="Reset">Reset</button>
-                                            </div>
+                                            <label class="control-label" for="UploadFotoCobmetTerbuka">Upload Foto Cobmet Terbuka</label>
+                                            <input type="file" name="UploadFotoCobmetTerbuka" id="UploadFotoCobmetTerbuka" placeholder="Masukkan Upload Foto Cobmet Terbuka" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="ViewAntemna">View Antemna</label>
+                                            <input type="text" name="ViewAntemna" id="ViewAntemna" placeholder="Masukkan View Antemna" class="form-control" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success btn-sm" name="tambahsiteverify">Tambah</button>
+                                            <button type="reset" class="btn btn-danger btn-sm" name="Reset">Reset</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -245,7 +286,7 @@ $_SESSION['start_time'] = time();
 
             </table>
             <div style="float: left;">
-                <button type="button" class="btn btn-success fa fa-plus fa-7x" data-target="#tambahkanuser" data-toggle="modal"> Tambah Data User Baru </button>
+                <button type="button" class="btn btn-success fa fa-plus fa-7x" data-target="#tambahkanuser" data-toggle="modal"> Tambah Data Site Integrasi Baru </button>
             </div>
         </div>
     </div>
