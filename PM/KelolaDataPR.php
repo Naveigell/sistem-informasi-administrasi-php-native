@@ -61,6 +61,22 @@ $_SESSION['start_time'] = time();
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 table-responsive">
         <h2 class="mb-4">Table PR</h2>
+        <center><?php
+            if(isset($_GET['pesan'])){
+                if($_GET['pesan']=="suksesedit"){
+                    echo "<div class='alert alert-success'>Data PR sudah berhasil di Edit !</div>";
+                }
+                else if($_GET['pesan']=="suksestambah"){
+                    echo "<div class='alert alert-success'>Data PR sudah berhasil di Tambahkan !</div>";
+                }
+                else if($_GET['pesan']=="gagaltambah"){
+                    echo "<div class='alert alert-danger'>Data PR sudah pernah di Tambahkan !</div>";
+                }
+                else if($_GET['pesan']=="sukseshapus"){
+                    echo "<div class='alert alert-success'>Data PR sudah berhasil di Hapus !</div>";
+                }
+            }
+            ?></center>
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
