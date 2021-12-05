@@ -61,17 +61,38 @@ $_SESSION['start_time'] = time();
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 table-responsive">
         <h2 class="mb-4">Table User</h2>
+        <center><?php
+            if(isset($_GET['pesan'])){
+                if($_GET['pesan']=="suksesedit"){
+                    echo "<div class='alert alert-success'>Data Sir sudah berhasil di Edit !</div>";
+                }
+                else if($_GET['pesan']=="suksestambah"){
+                    echo "<div class='alert alert-success'>Data Sir sudah berhasil di Tambahkan !</div>";
+                }
+                else if($_GET['pesan']=="gagaltambah"){
+                    echo "<div class='alert alert-danger'>Data Sir sudah pernah di Tambahkan !</div>";
+                }
+                else if($_GET['pesan']=="sukseshapus"){
+                    echo "<div class='alert alert-success'>Data Sir sudah berhasil di Hapus !</div>";
+                }
+            }
+            ?></center>
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Email</th>
-                    <th>No Hp</th>
-                    <th>Level</th>
-                    <th>Action</th>
+                    <th>Site Name</th>
+                    <th>Band Type</th>
+                    <th>Detail Sow</th>
+                    <th>Site Config</th>
+                    <th>BTS Type</th>
+                    <th>PO Number</th>
+                    <th>Site Type</th>
+                    <th>Tanggal Audit</th>
+                    <th>Tanggal Submit</th>
+                    <th>Tanggal Approved</th>
+                    <th>File SA</th>
+                    <th>Aksi</th>
                 </tr>
 
                 <?php
@@ -79,48 +100,59 @@ $_SESSION['start_time'] = time();
                 if (!$db) {echo "Connection Timeout";}
                 else
                 {
-                    $getData = mysqli_query($db, "SELECT * FROM tb_user ORDER by Id ASC");
+                    $getData = mysqli_query($db, "SELECT * FROM tb_sir ORDER by SiteId ASC");
                     // Fetch Data from Database to array
                     $no = 1;
                     while ($data = mysqli_fetch_assoc($getData))
                     {
-                        $Id                   = $data['Id'];
-                        $Nama                 = $data['Nama'];
-                        $User                 = $data['User'];
-                        $Pass                 = $data['Pass'];
-                        $Email                = $data['Email'];
-                        $NoHp                 = $data['NoHp'];
-                        $Level                = $data['Level'];
+                        $SiteId                = $data['SiteId'];
+                        $SiteName              = $data['SiteName'];
+                        $BandType              = $data['BandType'];
+                        $DetailSow             = $data['DetailSow'];
+                        $SiteConfig            = $data['SiteConfig'];
+                        $BTSType               = $data['BTSType'];
+                        $PONumber              = $data['PONumber'];
+                        $SiteType              = $data['SiteType'];
+                        $TanggalAudit          = $data['TanggalAudit'];
+                        $TanggalSubmit         = $data['TanggalSubmit'];
+                        $TanggalApproved       = $data['TanggalApproved'];
+                        $UploadFileSA          = $data['UploadFileSA'];
                         ?>
                         <tr align="rights">
                             <td><?= $no++; ?></td>
-                            <td><?= $Nama; ?></td>
-                            <td><?= $User; ?></td>
-                            <td><?= $Pass; ?></td>
-                            <td><?= $Email; ?></td>
-                            <td><?= $NoHp; ?></td>
-                            <td><?= $Level; ?></td>
+                            <td><?= $SiteName; ?></td>
+                            <td><?= $BandType; ?></td>
+                            <td><?= $DetailSow; ?></td>
+                            <td><?= $SiteConfig; ?></td>
+                            <td><?= $BTSType; ?></td>
+                            <td><?= $PONumber; ?></td>
+                            <td><?= $SiteType; ?></td>
+                            <td><?= $TanggalAudit; ?></td>
+                            <td><?= $TanggalSubmit; ?></td>
+                            <td><?= $TanggalApproved; ?></td>
+                            <td><a class="text-primary" style="text-decoration: underline;" href="../assets/img/sir/<?= $UploadFileSA; ?>">Download</a></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $Id; ?>" data-toggle="modal"></button>
-                                <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $Id; ?>" data-toggle="modal"></button>
+                                <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <button type="button" class="btn btn-primary btn-sm fa fa-eye" data-target="#detail<?= $SiteId; ?>" data-toggle="modal"></button>
 
                                 <!-- Modal Hapus -->
-                                <div class="modal fade" id="hapus<?= $Id; ?>" role="dialog">
+                                <div class="modal fade" id="hapus<?= $SiteId; ?>" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php?Id=<?= $Id;?>">
+                                            <form method="POST" action="../aksi/sir/delete.php?Id=<?= $SiteId;?>">
                                                 <div class="modal-body">
                                                     <?php
-                                                    $user = mysqli_query($db, "SELECT * FROM tb_user WHERE Id='$Id'");
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_sir WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                         ?>
-                                                        <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <center>
                                                             <i class="fa fa-close fa-5x" aria-hidden="true"></i>
-                                                            <h3>Yakin ingin menghapus User <strong><?= $result['Nama']; ?></strong> ?</h3>
+                                                            <h3>Yakin ingin menghapus Sir <strong><?= $result['SiteName']; ?></strong> ?</h3>
                                                         </center>
                                                         <?php
                                                     }
@@ -135,52 +167,128 @@ $_SESSION['start_time'] = time();
                                 </div>
 
                                 <!-- Modal Edit -->
-                                <div class="modal fade" id="edit<?= $Id; ?>" role="dialog">
+                                <div class="modal fade" id="edit<?= $SiteId; ?>" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php?Id=<?= $Id;?>">
+                                            <form method="POST" action="../aksi/sir/update.php?SiteId=<?= $SiteId;?>" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <?php
-                                                    $user = mysqli_query($db, "SELECT * FROM tb_user WHERE Id='$Id'");
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_sir WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
-                                                    ?>
-                                                    <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Nama">Nama</label>
-                                                        <input type="text" name="Nama" id="Nama" value="<?= $result['Nama']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="User">Username</label>
-                                                        <input type="text" name="User" id="User" value="<?= $result['User']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Pass">Password</label>
-                                                        <input type="text" name="Pass" id="Pass" value="<?= $result['Pass']; ?>" class="form-control" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="Email">Email</label>
-                                                        <input type="text" name="Email" id="Email" value="<?= $result['Email']; ?>" class="form-control" required>
+                                                        ?>
+                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <div class="form-group">
-                                                            <label class="control-label" for="NoHp">No Hp</label>
-                                                            <input type="text" name="NoHp" id="NoHp" value="<?= $result['NoHp']; ?>" class="form-control" required>
-                                                            <div class="form-group">
-                                                                <label class="control-label" for="Level">Level</label>
-                                                                <select name="Level" value="<?= $result['Level']; ?>"class="form-control" required>
-                                                                    <option value="PM">PM</option>
-                                                                    <option value="Admin">Admin</option>
-                                                                    <option value="Team Leader">Team Leader</option>
-                                                                </select>
-                                                            </div>
-                                                            <?php
-                                                            }
-                                                            ?>
+                                                            <label class="control-label" for="SiteName">Site Name</label>
+                                                            <input type="text" value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan SiteName" class="form-control" required>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-success" name="btnEdit">Edit</button>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="BandType">Band Type</label>
+                                                            <input type="text" value="<?= $result['BandType']; ?>" name="BandType" id="BandType" placeholder="Masukkan Band Type" class="form-control" required>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="DetailSow">Detail Sow</label>
+                                                            <input type="text" value="<?= $result['DetailSow']; ?>" name="DetailSow" id="DetailSow" placeholder="Masukkan Detail Sow" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteConfig">Site Config</label>
+                                                            <input type="text" value="<?= $result['SiteConfig']; ?>" name="SiteConfig" id="SiteConfig" placeholder="Masukkan Site Config" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="BTSType">BTS Type</label>
+                                                            <input type="text" value="<?= $result['BTSType']; ?>" name="BTSType" id="BTSType" placeholder="Masukkan BTS Type" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="PONumber">PO Number</label>
+                                                            <input type="text" value="<?= $result['PONumber']; ?>" name="PONumber" id="PONumber" placeholder="Masukkan PO Number" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteType">Site Type</label>
+                                                            <input type="text" value="<?= $result['SiteType']; ?>" name="SiteType" id="SiteType" placeholder="Masukkan Site Type" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TanggalAudit">Tanggal Audit</label>
+                                                            <input type="date" value="<?= date('Y-m-d', strtotime($result['TanggalAudit'])); ?>" name="TanggalAudit" id="TanggalAudit" placeholder="Masukkan Tanggal Audit" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TanggalSubmit">Tanggal Submit</label>
+                                                            <input type="date" value="<?= date('Y-m-d', strtotime($result['TanggalSubmit'])); ?>" name="TanggalSubmit" id="TanggalSubmit" placeholder="Masukkan Tanggal Submit" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TanggalApproved">Tanggal Approved</label>
+                                                            <input type="date" value="<?= date('Y-m-d', strtotime($result['TanggalApproved'])); ?>" name="TanggalApproved" id="TanggalApproved" placeholder="Masukkan Tanggal Approved" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="UploadFileSA">Upload File SA</label>
+                                                            <input type="file" name="UploadFileSA" id="UploadFileSA" placeholder="Masukkan No UploadFileSA" class="form-control" required>
+                                                        </div>
+                                                    <?php } ?>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-success" name="btnEdit">Edit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="detail<?= $SiteId; ?>" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <form method="POST" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    <?php
+                                                    $user = mysqli_query($db, "SELECT * FROM tb_sa WHERE SiteId='$SiteId'");
+                                                    while ($result = mysqli_fetch_assoc($user)) {
+                                                        ?>
+                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteName">Site Name</label>
+                                                            <input disabled type="text" value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan SiteName" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="BandType">Band Type</label>
+                                                            <input disabled type="text" value="<?= $result['BandType']; ?>" name="BandType" id="BandType" placeholder="Masukkan Band Type" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="DetailSow">Detail Sow</label>
+                                                            <input disabled type="text" value="<?= $result['DetailSow']; ?>" name="DetailSow" id="DetailSow" placeholder="Masukkan Detail Sow" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteConfig">Site Config</label>
+                                                            <input disabled type="text" value="<?= $result['SiteConfig']; ?>" name="SiteConfig" id="SiteConfig" placeholder="Masukkan Site Config" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="BTSType">BTS Type</label>
+                                                            <input disabled type="text" value="<?= $result['BTSType']; ?>" name="BTSType" id="BTSType" placeholder="Masukkan BTS Type" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="PONumber">PO Number</label>
+                                                            <input disabled type="text" value="<?= $result['PONumber']; ?>" name="PONumber" id="PONumber" placeholder="Masukkan PO Number" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteType">Site Type</label>
+                                                            <input disabled type="text" value="<?= $result['SiteType']; ?>" name="SiteType" id="SiteType" placeholder="Masukkan Site Type" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TanggalApproved">Tanggal Approved</label>
+                                                            <input disabled type="date" value="<?= date('Y-m-d', strtotime($result['TanggalApproved'])); ?>" name="TanggalApproved" id="TanggalApproved" placeholder="Masukkan Tanggal Approved" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TanggalSubmit">Tanggal Submit</label>
+                                                            <input disabled type="date" value="<?= date('Y-m-d', strtotime($result['TanggalSubmit'])); ?>" name="TanggalSubmit" id="TanggalSubmit" placeholder="Masukkan Tanggal Submit" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="TanggalApproved">Tanggal Approved</label>
+                                                            <input disabled type="date" value="<?= date('Y-m-d', strtotime($result['TanggalApproved'])); ?>" name="TanggalApproved" id="TanggalApproved" placeholder="Masukkan Tanggal Approved" class="form-control" required>
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -198,44 +306,61 @@ $_SESSION['start_time'] = time();
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4>Form Tambah User</h4>
+                                    <h4>Form Tambah Sir</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                                <form method="POST" action="../koneksi/KoneksiKelolaDataUser.php">
+                                <form method="POST" action="../aksi/sir/insert.php" enctype="multipart/form-data">
                                     <div class="modal-body">
 
                                         <div class="form-group">
-                                            <label class="control-label" for="Nama">Nama</label>
-                                            <input type="text" name="Nama" id="Nama" placeholder="Masukkan Nama" class="form-control" required>
+                                            <label class="control-label" for="SiteName">Site Name</label>
+                                            <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan SiteName" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="User">Username</label>
-                                            <input type="text" name="User" id="User" placeholder="Masukkan Username" class="form-control" required>
+                                            <label class="control-label" for="BandType">Band Type</label>
+                                            <input type="text" name="BandType" id="BandType" placeholder="Masukkan Band Type" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="Pass">Password</label>
-                                            <input type="text" name="Pass" id="Pass" placeholder="Masukkan Password" class="form-control" required>
+                                            <label class="control-label" for="DetailSow">Detail Sow</label>
+                                            <input type="text" name="DetailSow" id="DetailSow" placeholder="Masukkan Detail Sow" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="Email">Email</label>
-                                            <input type="text" name="Email" id="Email" placeholder="Masukkan Email" class="form-control" required>
-                                            <div class="form-group">
-                                                <label class="control-label" for="NoHp">No Hp</label>
-                                                <input type="number" name="NoHp" id="NoHp" placeholder="Masukkan No Hp" class="form-control" required>
-                                                <div class="form-group">
-                                                    <label class="control-label" for="Level">Level</label>
-                                                    <select name="Level" class="form-control" required>
-                                                        <option value="" hidden >Masukkan Level User</option>
-                                                        <option value="PM">PM</option>
-                                                        <option value="Admin">Admin</option>
-                                                        <option value="Team Leader">Team Leader</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success btn-sm" name="tambahuser">Tambah</button>
-                                                <button type="reset" class="btn btn-danger btn-sm" name="Reset">Reset</button>
-                                            </div>
+                                            <label class="control-label" for="SiteConfig">Site Config</label>
+                                            <input type="text" name="SiteConfig" id="SiteConfig" placeholder="Masukkan Site Config" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="BTSType">BTS Type</label>
+                                            <input type="text" name="BTSType" id="BTSType" placeholder="Masukkan BTS Type" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="PONumber">PO Number</label>
+                                            <input type="text" name="PONumber" id="PONumber" placeholder="Masukkan PO Number" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteType">Site Type</label>
+                                            <input type="text" name="SiteType" id="SiteType" placeholder="Masukkan Site Type" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="TanggalAudit">Tanggal Audit</label>
+                                            <input type="date" name="TanggalAudit" id="TanggalAudit" placeholder="Masukkan Tanggal Audit" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="TanggalSubmit">Tanggal Submit</label>
+                                            <input type="date" name="TanggalSubmit" id="TanggalSubmit" placeholder="Masukkan Tanggal Submit" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="TanggalApproved">Tanggal Approved</label>
+                                            <input type="date" name="TanggalApproved" id="TanggalApproved" placeholder="Masukkan Tanggal Approved" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="UploadFileSA">Upload File SA</label>
+                                            <input type="file" name="UploadFileSA" id="UploadFileSA" placeholder="Masukkan No UploadFileSA" class="form-control" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success btn-sm" name="tambahsir">Tambah</button>
+                                            <button type="reset" class="btn btn-danger btn-sm" name="Reset">Reset</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -245,7 +370,7 @@ $_SESSION['start_time'] = time();
 
             </table>
             <div style="float: left;">
-                <button type="button" class="btn btn-success fa fa-plus fa-7x" data-target="#tambahkanuser" data-toggle="modal"> Tambah Data User Baru </button>
+                <button type="button" class="btn btn-success fa fa-plus fa-7x" data-target="#tambahkanuser" data-toggle="modal"> Tambah Data Sir Baru </button>
             </div>
         </div>
     </div>
