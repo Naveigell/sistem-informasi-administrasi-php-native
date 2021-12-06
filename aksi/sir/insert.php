@@ -4,6 +4,15 @@ include './../../koneksi/koneksi.php';
 //input User
 if (isset($_POST['tambahsir']))
 {
+    $SiteId                = $_POST['SiteId'];
+
+    $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_sir WHERE SiteId='$SiteId'"));
+    if ($cek > 0){
+        header("location: ./../../PM/KelolaDataSir.php?pesan=duplicate");
+
+        return;
+    }
+
     $SiteName              = $_POST['SiteName'];
     $BandType              = $_POST['BandType'];
     $DetailSow             = $_POST['DetailSow'];
@@ -20,8 +29,8 @@ if (isset($_POST['tambahsir']))
     $uploaded = move_uploaded_file($_FILES['UploadFileSA']['tmp_name'], './../../assets/img/sir/' . $UploadFileSA);
 
     if ($uploaded) {
-        $query = "INSERT INTO tb_sir (SiteName, BandType, DetailSow, SiteConfig, BTSType, PONumber, SiteType, TanggalAudit, TanggalSubmit, TanggalApproved, UploadFileSA) 
-              VALUES('$SiteName', '$BandType', '$DetailSow', '$SiteConfig','$BTSType', '$PONumber', '$SiteType', '$TanggalAudit', '$TanggalSubmit', '$TanggalApproved', '$UploadFileSA')";
+        $query = "INSERT INTO tb_sir (SiteId, SiteName, BandType, DetailSow, SiteConfig, BTSType, PONumber, SiteType, TanggalAudit, TanggalSubmit, TanggalApproved, UploadFileSA) 
+              VALUES('$SiteId', '$SiteName', '$BandType', '$DetailSow', '$SiteConfig','$BTSType', '$PONumber', '$SiteType', '$TanggalAudit', '$TanggalSubmit', '$TanggalApproved', '$UploadFileSA')";
         $result = mysqli_query($db, $query);
 
         header("location: ./../../PM/KelolaDataSir.php?pesan=suksestambah");

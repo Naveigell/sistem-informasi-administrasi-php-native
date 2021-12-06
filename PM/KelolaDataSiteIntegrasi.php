@@ -60,7 +60,7 @@ $_SESSION['start_time'] = time();
 
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 table-responsive">
-        <h2 class="mb-4">Table User</h2>
+        <h2 class="mb-4">Table Site Integrasi</h2>
         <center><?php
             if(isset($_GET['pesan'])){
                 if($_GET['pesan']=="suksesedit"){
@@ -80,7 +80,7 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
-                    <th>No</th>
+                    <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Sow</th>
                     <th>Band Type</th>
@@ -105,7 +105,7 @@ $_SESSION['start_time'] = time();
                         $BTSType  = $data['BTSType'];
                         ?>
                         <tr align="rights">
-                            <td><?= $no++; ?></td>
+                            <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $Sow; ?></td>
                             <td><?= $BandType; ?></td>
@@ -160,6 +160,10 @@ $_SESSION['start_time'] = time();
                                                     ?>
                                                     <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
                                                     <div class="form-group">
+                                                        <label class="control-label" for="SiteId">Site Id</label>
+                                                        <input type="text" value="<?= $result['SiteId']; ?>" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="control-label" for="SiteName">Site Name</label>
                                                         <input type="text" value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
                                                     </div>
@@ -198,6 +202,10 @@ $_SESSION['start_time'] = time();
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                         ?>
                                                         <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteId">Site Id</label>
+                                                            <input type="text" disabled value="<?= $result['SiteId']; ?>" name="SiteId" id="SiteId" placeholder="Masukkan Site Name" class="form-control" required>
+                                                        </div>
                                                         <div class="form-group">
                                                             <label class="control-label" for="SiteName">Site Name</label>
                                                             <input type="text" disabled value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
@@ -238,6 +246,10 @@ $_SESSION['start_time'] = time();
                                 </div>
                                 <form method="POST" action="../aksi/site_integrasi/insert.php">
                                     <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteId">Site Id</label>
+                                            <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label" for="SiteName">Site Name</label>
                                             <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>

@@ -60,7 +60,7 @@ $_SESSION['start_time'] = time();
 
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 table-responsive">
-        <h2 class="mb-4">Table User</h2>
+        <h2 class="mb-4">Table SA</h2>
         <center><?php
             if(isset($_GET['pesan'])){
                 if($_GET['pesan']=="suksesedit"){
@@ -80,7 +80,7 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
-                    <th>No</th>
+                    <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Band Type</th>
                     <th>Detail Sow</th>
@@ -118,7 +118,7 @@ $_SESSION['start_time'] = time();
                         ?>
 
                         <tr align="rights">
-                            <td><?= $no++; ?></td>
+                            <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $BandType; ?></td>
                             <td><?= $DetailSow; ?></td>
@@ -171,7 +171,7 @@ $_SESSION['start_time'] = time();
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../aksi/sa/update.php?SiteId=<?= $SiteId;?>" enctype="multipart/form-data">
+                                            <form method="POST" action="../aksi/sa/update.php?Id=<?= $SiteId;?>" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <?php
                                                     $user = mysqli_query($db, "SELECT * FROM tb_sa WHERE SiteId='$SiteId'");
@@ -179,8 +179,12 @@ $_SESSION['start_time'] = time();
                                                     ?>
                                                     <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                     <div class="form-group">
+                                                        <label class="control-label" for="SiteId">Site Id</label>
+                                                        <input type="text" value="<?= $result['SiteId']; ?>" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="control-label" for="SiteName">Site Name</label>
-                                                        <input type="text" value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan SiteName" class="form-control" required>
+                                                        <input type="text" value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label" for="BandType">Band Type</label>
@@ -242,8 +246,12 @@ $_SESSION['start_time'] = time();
                                                         ?>
                                                         <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <div class="form-group">
+                                                            <label class="control-label" for="SiteId">Site Id</label>
+                                                            <input disabled type="text" value="<?= $result['SiteId']; ?>" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="control-label" for="SiteName">Site Name</label>
-                                                            <input disabled type="text" value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan SiteName" class="form-control" required>
+                                                            <input disabled type="text" value="<?= $result['SiteName']; ?>" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label" for="BandType">Band Type</label>
@@ -302,6 +310,10 @@ $_SESSION['start_time'] = time();
                                 <form method="POST" action="../aksi/sa/insert.php" enctype="multipart/form-data">
                                     <div class="modal-body">
 
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteId">Site Id</label>
+                                            <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label" for="SiteName">Site Name</label>
                                             <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan SiteName" class="form-control" required>

@@ -4,6 +4,15 @@ include './../../koneksi/koneksi.php';
 //input User
 if (isset($_POST['tambahmos']))
 {
+    $SiteId                = $_POST['SiteId'];
+
+    $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_mos WHERE SiteId='$SiteId'"));
+    if ($cek > 0){
+        header("location: ./../../PM/KelolaDataMos.php?pesan=duplicate");
+
+        return;
+    }
+
     $SiteName                 = $_POST['SiteName'];
     $SiteType                 = $_POST['SiteType'];
     $PicOnSite                = $_POST['PicOnSite'];
@@ -18,8 +27,8 @@ if (isset($_POST['tambahmos']))
     $uploaded = move_uploaded_file($_FILES['UploadFotoMaterial']['tmp_name'], './../../assets/img/mos/' . $UploadFotoMaterial) && move_uploaded_file($_FILES['UploadFotoPicOnSite']['tmp_name'], './../../assets/img/mos/' . $UploadFotoPicOnSite);
 
     if ($uploaded) {
-        $query = "INSERT INTO tb_mos (SiteName, SiteType, PicOnSite, NoTelpPic, PenanggungJawabVendor, TocoName, Sow, UploadFotoMaterial, UploadFotoPicOnSite) 
-              VALUES('$SiteName', '$SiteType', '$PicOnSite', '$NoTelpPic','$PenanggungJawabVendor', '$TocoName', '$Sow', '$UploadFotoMaterial', '$UploadFotoPicOnSite')";
+        $query = "INSERT INTO tb_mos (SiteId, SiteName, SiteType, PicOnSite, NoTelpPic, PenanggungJawabVendor, TocoName, Sow, UploadFotoMaterial, UploadFotoPicOnSite) 
+              VALUES('$SiteId', '$SiteName', '$SiteType', '$PicOnSite', '$NoTelpPic','$PenanggungJawabVendor', '$TocoName', '$Sow', '$UploadFotoMaterial', '$UploadFotoPicOnSite')";
         $result = mysqli_query($db, $query);
 
         header("location: ./../../PM/KelolaDataMos.php?pesan=suksestambah");

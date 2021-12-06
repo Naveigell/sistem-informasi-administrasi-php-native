@@ -60,7 +60,7 @@ $_SESSION['start_time'] = time();
 
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 table-responsive">
-        <h2 class="mb-4">Table User</h2>
+        <h2 class="mb-4">Table Site Verify</h2>
         <center><?php
             if(isset($_GET['pesan'])){
                 if($_GET['pesan']=="suksesedit"){
@@ -80,12 +80,12 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
-                    <th>No</th>
+                    <th>Site Id</th>
                     <th>Site Name</th>
-                    <th>TocoName</th>
+                    <th>Toco Name</th>
                     <th>Sow</th>
-                    <th>UploadFotoCobmetTerbuka</th>
-                    <th>ViewAntemna</th>
+                    <th>Foto Cabinet Terbuka</th>
+                    <th>View Antena RUU</th>
                     <th>Aksi</th>
                 </tr>
 
@@ -103,19 +103,21 @@ $_SESSION['start_time'] = time();
                         $SiteName                   = $data['SiteName'];
                         $TocoName                   = $data['TocoName'];
                         $Sow                        = $data['Sow'];
-                        $UploadFotoCobmetTerbuka    = $data['UploadFotoCobmetTerbuka'];
-                        $ViewAntemna                = $data['ViewAntemna'];
+                        $UploadFotoCabinet          = $data['UploadFotoCabinet'];
+                        $ViewAntenaRUU              = $data['ViewAntenaRUU'];
 
                         ?>
                         <tr align="rights">
-                            <td><?= $no++; ?></td>
+                            <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $TocoName; ?></td>
                             <td><?= $Sow; ?></td>
                             <td>
-                                <img src="./../assets/img/site_verify/<?= $UploadFotoCobmetTerbuka; ?>" alt="" width="300px" height="300px">
+                                <img src="./../assets/img/site_verify/<?= $UploadFotoCabinet; ?>" alt="" width="300px" height="300px">
                             </td>
-                            <td><?= $ViewAntemna; ?></td>
+                            <td>
+                                <img src="./../assets/img/site_verify/<?= $ViewAntenaRUU; ?>" alt="" width="300px" height="300px">
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
                                 <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
@@ -166,6 +168,10 @@ $_SESSION['start_time'] = time();
                                                     ?>
                                                     <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <div class="form-group">
+                                                            <label class="control-label" for="SiteId">Site Id</label>
+                                                            <input value="<?= $result['SiteId']; ?>" type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="control-label" for="SiteName">Site Nama</label>
                                                             <input value="<?= $result['SiteName']; ?>" type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
                                                         </div>
@@ -178,12 +184,12 @@ $_SESSION['start_time'] = time();
                                                             <input value="<?= $result['Sow']; ?>" type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="UploadFotoCobmetTerbuka">Upload Foto Cobmet Terbuka</label>
-                                                            <input type="file" name="UploadFotoCobmetTerbuka" id="UploadFotoCobmetTerbuka" placeholder="Masukkan Upload Foto Cobmet Terbuka" class="form-control" required>
+                                                            <label class="control-label" for="UploadFotoCabinet">Upload Foto Cabinet Terbuka</label>
+                                                            <input type="file" name="UploadFotoCabinet" id="UploadFotoCabinet" placeholder="Masukkan Upload Foto Cabinet Terbuka" accept="image/png,image/jpeg,image/jpg" class="form-control" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="ViewAntemna">View Antemna</label>
-                                                            <input value="<?= $result['ViewAntemna']; ?>" type="text" name="ViewAntemna" id="ViewAntemna" placeholder="Masukkan View Antemna" class="form-control" required>
+                                                            <label class="control-label" for="ViewAntenaRUU">View AntenaRUU</label>
+                                                            <input value="<?= $result['ViewAntenaRUU']; ?>" type="file" name="ViewAntenaRUU" id="ViewAntenaRUU" placeholder="Masukkan View AntenaRUU" accept="image/png,image/jpeg,image/jpg" class="form-control" required>
                                                         </div>
                                                     <?php } ?>
                                                     <div class="modal-footer">
@@ -221,12 +227,12 @@ $_SESSION['start_time'] = time();
                                                             <input disabled value="<?= $result['Sow']; ?>" type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="UploadFotoCobmetTerbuka">Foto Cobmet Terbuka</label>
-                                                            <img src="./../assets/img/site_verify/<?= $result['UploadFotoCobmetTerbuka']; ?>" alt="" width="300px" height="300px">
+                                                            <label class="control-label" for="UploadFotoCabinet">Foto Cabinet Terbuka</label>
+                                                            <img src="./../assets/img/site_verify/<?= $result['UploadFotoCabinet']; ?>" alt="" width="300px" height="300px">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="ViewAntemna">View Antemna</label>
-                                                            <input disabled value="<?= $result['ViewAntemna']; ?>" type="text" name="ViewAntemna" id="ViewAntemna" placeholder="Masukkan View Antemna" class="form-control" required>
+                                                            <label class="control-label" for="ViewAntenaRUU">View AntenaRUU</label>
+                                                            <input disabled value="<?= $result['ViewAntenaRUU']; ?>" type="text" name="ViewAntenaRUU" id="ViewAntenaRUU" placeholder="Masukkan View AntenaRUU" class="form-control" required>
                                                         </div>
                                                     <?php } ?>
                                                 </div>
@@ -247,11 +253,15 @@ $_SESSION['start_time'] = time();
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4>Form Tambah User</h4>
+                                    <h4>Form Tambah Site Verify</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <form method="POST" action="../aksi/site_verify/insert.php" enctype="multipart/form-data">
                                     <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteId">Site Id</label>
+                                            <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label" for="SiteName">Site Nama</label>
                                             <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
@@ -265,12 +275,12 @@ $_SESSION['start_time'] = time();
                                             <input type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="UploadFotoCobmetTerbuka">Upload Foto Cobmet Terbuka</label>
-                                            <input type="file" name="UploadFotoCobmetTerbuka" id="UploadFotoCobmetTerbuka" placeholder="Masukkan Upload Foto Cobmet Terbuka" class="form-control" required>
+                                            <label class="control-label" for="UploadFotoCabinet">Upload Foto Cabinet Terbuka</label>
+                                            <input type="file" name="UploadFotoCabinet" id="UploadFotoCabinet" placeholder="Masukkan Upload Foto Cabinet Terbuka" accept="image/png,image/jpeg,image/jpg" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="ViewAntemna">View Antemna</label>
-                                            <input type="text" name="ViewAntemna" id="ViewAntemna" placeholder="Masukkan View Antemna" class="form-control" required>
+                                            <label class="control-label" for="ViewAntenaRUU">Upload View Antena RUU</label>
+                                            <input type="file" name="ViewAntenaRUU" id="ViewAntenaRUU" placeholder="Masukkan View AntenaRUU" class="form-control" accept="image/png,image/jpeg,image/jpg" required>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-success btn-sm" name="tambahsiteverify">Tambah</button>

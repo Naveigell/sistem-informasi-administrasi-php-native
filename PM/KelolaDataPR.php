@@ -80,7 +80,7 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
-                    <th>No</th>
+                    <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Band Type</th>
                     <th>Detail Sow</th>
@@ -113,7 +113,7 @@ $_SESSION['start_time'] = time();
                         $UploadFilePR            = $data['UploadFilePR'];
                         ?>
                         <tr align="rights">
-                            <td><?= $no++; ?></td>
+                            <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $BandType; ?></td>
                             <td><?= $DetailSow; ?></td>
@@ -164,13 +164,17 @@ $_SESSION['start_time'] = time();
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-                                            <form method="POST" action="../aksi/pr/update.php?SiteId=<?= $SiteId;?>" enctype="multipart/form-data">
+                                            <form method="POST" action="../aksi/pr/update.php?Id=<?= $SiteId;?>" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <?php
                                                     $user = mysqli_query($db, "SELECT * FROM tb_pr WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                     ?>
                                                     <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="SiteId">Site Id</label>
+                                                        <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" value="<?= $result['SiteId']; ?>" required>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label class="control-label" for="SiteName">Site Name</label>
                                                         <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" value="<?= $result['SiteName']; ?>" required>
@@ -226,6 +230,10 @@ $_SESSION['start_time'] = time();
                                                         ?>
                                                         <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
                                                         <div class="form-group">
+                                                            <label class="control-label" for="SiteId">Site Id</label>
+                                                            <input type="text" disabled name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" value="<?= $result['SiteId']; ?>" required>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="control-label" for="SiteName">Site Name</label>
                                                             <input type="text" disabled name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" value="<?= $result['SiteName']; ?>" required>
                                                         </div>
@@ -277,6 +285,10 @@ $_SESSION['start_time'] = time();
                                 </div>
                                 <form method="POST" action="./../aksi/pr/insert.php" ENCTYPE="multipart/form-data">
                                     <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteId">Site Id</label>
+                                            <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label" for="SiteName">Site Name</label>
                                             <input type="text" name="SiteName" id="SiteName" placeholder="Masukkan Site Name" class="form-control" required>
