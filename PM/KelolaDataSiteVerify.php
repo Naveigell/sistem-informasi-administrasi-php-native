@@ -221,12 +221,13 @@ $_SESSION['start_time'] = time();
                                                             <input disabled value="<?= $result['Sow']; ?>" type="text" name="Sow" id="Sow" placeholder="Masukkan Sow" class="form-control" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="UploadFotoCabinet">Foto Cabinet Terbuka</label>
-                                                            <img src="./../assets/img/site_verify/<?= $result['UploadFotoCabinet']; ?>" alt="" width="300px" height="300px">
+                                                            <label class="control-label" for="ViewAntenaRUU">View Antena RUU</label>
+                                                            <br>
+                                                            <img src="./../assets/img/site_verify/<?= $result['ViewAntenaRUU']; ?>" alt="" width="300px" height="300px">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="ViewAntenaRUU">View AntenaRUU</label>
-                                                            <input disabled value="<?= $result['ViewAntenaRUU']; ?>" type="text" name="ViewAntenaRUU" id="ViewAntenaRUU" placeholder="Masukkan View AntenaRUU" class="form-control" required>
+                                                            <label class="control-label" for="UploadFotoCabinet">Foto Cabinet Terbuka</label>
+                                                            <img src="./../assets/img/site_verify/<?= $result['UploadFotoCabinet']; ?>" alt="" width="300px" height="300px">
                                                         </div>
                                                     <?php } ?>
                                                 </div>

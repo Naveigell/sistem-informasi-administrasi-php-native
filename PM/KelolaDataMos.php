@@ -172,7 +172,7 @@ $_SESSION['start_time'] = time();
                                                     $user = mysqli_query($db, "SELECT * FROM tb_mos WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                     ?>
-                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
+<!--                                                        <input type="text" name="Id" value="--><?//= $result['SiteId']; ?><!--" hidden="true">-->
                                                         <div class="form-group">
                                                             <label class="control-label" for="SiteId">Site Id</label>
                                                             <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required value="<?= $result['SiteId']; ?>">
@@ -237,7 +237,7 @@ $_SESSION['start_time'] = time();
                                                     $user = mysqli_query($db, "SELECT * FROM tb_mos WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                         ?>
-                                                        <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
+<!--                                                        <input type="text" name="Id" value="--><?//= $result['SiteId']; ?><!--" hidden="true">-->
                                                         <div class="form-group">
                                                             <label class="control-label" for="SiteId">Site Id</label>
                                                             <input type="text" disabled name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required value="<?= $result['SiteId']; ?>">

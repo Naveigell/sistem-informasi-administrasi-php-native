@@ -23,7 +23,7 @@ if (isset($_POST['btnEdit']))
         }
     }
 
-    $UploadFilePR       = 'Site ' . $SiteId . ' ' . $SiteName . ' ' . date('d - M - Y') . pathinfo($_FILES['UploadFilePR']['name'], PATHINFO_EXTENSION);
+    $UploadFilePR       = 'Site ' . $SiteId . ' ' . $SiteName . ' ' . date('d - M - Y.') . pathinfo($_FILES['UploadFilePR']['name'], PATHINFO_EXTENSION);
 
     $uploaded = move_uploaded_file($_FILES['UploadFilePR']['tmp_name'], './../../assets/img/pr/' . $UploadFilePR);
 

@@ -175,7 +175,7 @@ $_SESSION['start_time'] = time();
                                                     $user = mysqli_query($db, "SELECT * FROM tb_site_integrasi WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                     ?>
-                                                    <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+<!--                                                    <input type="text" name="Id" value="--><?//= $result['Id']; ?><!--" hidden="true">-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="SiteId">Site Id</label>
                                                         <input type="text" value="<?= $result['SiteId']; ?>" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
@@ -238,7 +238,7 @@ $_SESSION['start_time'] = time();
                                                     $user = mysqli_query($db, "SELECT * FROM tb_site_integrasi WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                         ?>
-                                                        <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+<!--                                                        <input type="text" name="Id" value="--><?//= $result['Id']; ?><!--" hidden="true">-->
                                                         <div class="form-group">
                                                             <label class="control-label" for="SiteId">Site Id</label>
                                                             <input type="text" disabled value="<?= $result['SiteId']; ?>" name="SiteId" id="SiteId" placeholder="Masukkan Site Name" class="form-control" required>

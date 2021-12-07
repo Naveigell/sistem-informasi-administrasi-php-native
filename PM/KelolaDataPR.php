@@ -172,7 +172,7 @@ $_SESSION['start_time'] = time();
                                                     $user = mysqli_query($db, "SELECT * FROM tb_pr WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                     ?>
-                                                    <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+<!--                                                    <input type="text" name="Id" value="--><?//= $result['Id']; ?><!--" hidden="true">-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="SiteId">Site Id</label>
                                                         <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" value="<?= $result['SiteId']; ?>" required>
@@ -230,7 +230,7 @@ $_SESSION['start_time'] = time();
                                                     $user = mysqli_query($db, "SELECT * FROM tb_pr WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                         ?>
-                                                        <input type="text" name="Id" value="<?= $result['Id']; ?>" hidden="true">
+<!--                                                        <input type="text" name="Id" value="--><?//= $result['Id']; ?><!--" hidden="true">-->
                                                         <div class="form-group">
                                                             <label class="control-label" for="SiteId">Site Id</label>
                                                             <input type="text" disabled name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" value="<?= $result['SiteId']; ?>" required>
