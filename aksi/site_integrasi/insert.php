@@ -13,13 +13,18 @@ if (isset($_POST['tambahsiteintegrasi']))
         return;
     }
 
-    $SiteName = $_POST['SiteName'];
-    $Sow      = $_POST['Sow'];
-    $BandType = $_POST['BandType'];
-    $BTSType  = $_POST['BTSType'];
+    $SiteName        = $_POST['SiteName'];
+    $Sow             = $_POST['Sow'];
+    $BandType        = $_POST['BandType'];
+    $BTSType         = $_POST['BTSType'];
+    $SiteConfig      = $_POST['SiteConfig'];
+    $EnginerId       = $_POST['EnginerId'];
+    $EnginerName     = $_POST['EnginerName'];
+    $IntegratorName  = $_POST['IntegratorName'];
+    $NoHpIntegrator  = $_POST['NoHpIntegrator'];
 
-    $query = "INSERT INTO tb_site_integrasi (SiteId, SiteName, Sow, BandType, BTSType) 
-              VALUES('$SiteId', '$SiteName', '$Sow', '$BandType', '$BTSType')";
+    $query = "INSERT INTO tb_site_integrasi (SiteId, SiteName, Sow, BandType, BTSType, SiteConfig, EnginerId, EnginerName, IntegratorName, NoHpIntegrator) 
+              VALUES('$SiteId', '$SiteName', '$Sow', '$BandType', '$BTSType', '$SiteConfig', '$EnginerId', '$EnginerName', '$IntegratorName', '$NoHpIntegrator')";
 
     $result = mysqli_query($db, $query);
 

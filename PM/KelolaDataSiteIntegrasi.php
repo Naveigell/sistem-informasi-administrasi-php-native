@@ -80,11 +80,17 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
+                    <th>No</th>
                     <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Sow</th>
                     <th>Band Type</th>
                     <th>BTS Type</th>
+                    <th>Site Config</th>
+                    <th>Enginer Id</th>
+                    <th>Enginer Name</th>
+                    <th>Integrator Name</th>
+                    <th>No Hp Integrator</th>
                     <th>Action</th>
                 </tr>
 
@@ -98,18 +104,29 @@ $_SESSION['start_time'] = time();
                     $no = 1;
                     while ($data = mysqli_fetch_assoc($getData))
                     {
-                        $SiteId   = $data['SiteId'];
-                        $SiteName = $data['SiteName'];
-                        $Sow      = $data['Sow'];
-                        $BandType = $data['BandType'];
-                        $BTSType  = $data['BTSType'];
+                        $SiteId          = $data['SiteId'];
+                        $SiteName        = $data['SiteName'];
+                        $Sow             = $data['Sow'];
+                        $BandType        = $data['BandType'];
+                        $BTSType         = $data['BTSType'];
+                        $SiteConfig      = $data['SiteConfig'];
+                        $EnginerId       = $data['EnginerId'];
+                        $EnginerName     = $data['EnginerName'];
+                        $IntegratorName  = $data['IntegratorName'];
+                        $NoHpIntegrator  = $data['NoHpIntegrator'];
                         ?>
                         <tr align="rights">
+                            <td><?= $no++; ?></td>
                             <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $Sow; ?></td>
                             <td><?= $BandType; ?></td>
                             <td><?= $BTSType; ?></td>
+                            <td><?= $SiteConfig; ?></td>
+                            <td><?= $EnginerId; ?></td>
+                            <td><?= $EnginerName; ?></td>
+                            <td><?= $IntegratorName; ?></td>
+                            <td><?= $NoHpIntegrator; ?></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
                                 <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
@@ -179,6 +196,26 @@ $_SESSION['start_time'] = time();
                                                         <label class="control-label" for="BTSType">BTS Type</label>
                                                         <input type="text" value="<?= $result['BTSType']; ?>" name="BTSType" id="BandType" placeholder="Masukkan BTS Type" class="form-control" required>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="SiteConfig">Site Config</label>
+                                                        <input type="text" value="<?= $result['SiteConfig']; ?>" name="SiteConfig" id="SiteConfig" placeholder="Masukkan Site Config" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="EnginerId">Enginer Id</label>
+                                                        <input type="text" value="<?= $result['EnginerId']; ?>" name="EnginerId" id="EnginerId" placeholder="Masukkan Enginer Id" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="EnginerName">Enginer Name</label>
+                                                        <input type="text" value="<?= $result['EnginerName']; ?>" name="EnginerName" id="EnginerName" placeholder="Masukkan Enginer Name" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="IntegratorName">Integrator Name</label>
+                                                        <input type="text" value="<?= $result['IntegratorName']; ?>" name="IntegratorName" id="IntegratorName" placeholder="Masukkan Integrator Name" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="NoHpIntegrator">No Hp Integrator</label>
+                                                        <input type="text" value="<?= $result['NoHpIntegrator']; ?>" name="NoHpIntegrator" id="NoHpIntegrator" placeholder="Masukkan No Hp Integrator" class="form-control" required>
+                                                    </div>
                                                     <?php } ?>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-success" name="btnEdit">Edit</button>
@@ -221,6 +258,26 @@ $_SESSION['start_time'] = time();
                                                         <div class="form-group">
                                                             <label class="control-label" for="BTSType">BTS Type</label>
                                                             <input type="text" disabled value="<?= $result['BTSType']; ?>" name="BTSType" id="BandType" placeholder="Masukkan BTS Type" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="SiteConfig">Site Config</label>
+                                                            <input type="text" disabled value="<?= $result['SiteConfig']; ?>" name="SiteConfig" id="SiteConfig" placeholder="Masukkan Site Config" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="EnginerId">Enginer Id</label>
+                                                            <input type="text" disabled value="<?= $result['EnginerId']; ?>" name="EnginerId" id="EnginerId" placeholder="Masukkan Enginer Id" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="EnginerName">Enginer Name</label>
+                                                            <input type="text" disabled value="<?= $result['EnginerName']; ?>" name="EnginerName" id="EnginerName" placeholder="Masukkan Enginer Name" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="IntegratorName">Integrator Name</label>
+                                                            <input type="text" disabled value="<?= $result['IntegratorName']; ?>" name="IntegratorName" id="IntegratorName" placeholder="Masukkan Integrator Name" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="NoHpIntegrator">No Hp Integrator</label>
+                                                            <input type="text" disabled value="<?= $result['NoHpIntegrator']; ?>" name="NoHpIntegrator" id="NoHpIntegrator" placeholder="Masukkan No Hp Integrator" class="form-control" required>
                                                         </div>
                                                     <?php } ?>
                                                 </div>
@@ -265,6 +322,26 @@ $_SESSION['start_time'] = time();
                                         <div class="form-group">
                                             <label class="control-label" for="BTSType">BTS Type</label>
                                             <input type="text" name="BTSType" id="BandType" placeholder="Masukkan BTS Type" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="SiteConfig">Site Config</label>
+                                            <input type="text" name="SiteConfig" id="SiteConfig" placeholder="Masukkan Site Config" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="EnginerId">Enginer Id</label>
+                                            <input type="text" name="EnginerId" id="EnginerId" placeholder="Masukkan Enginer Id" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="EnginerName">Enginer Name</label>
+                                            <input type="text" name="EnginerName" id="EnginerName" placeholder="Masukkan Enginer Name" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="IntegratorName">Integrator Name</label>
+                                            <input type="text" name="IntegratorName" id="IntegratorName" placeholder="Masukkan Integrator Name" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="NoHpIntegrator">No Hp Integrator</label>
+                                            <input type="text" name="NoHpIntegrator" id="NoHpIntegrator" placeholder="Masukkan No Hp Integrator" class="form-control" required>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-success btn-sm" name="tambahsiteintegrasi">Tambah</button>

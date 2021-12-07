@@ -25,7 +25,7 @@ if (isset($_POST['btnEdit']))
         }
     }
 
-    $UploadFileSA       = mt_rand(100000, 1000000) . date('dmYHis.') . pathinfo($_FILES['UploadFileSA']['name'], PATHINFO_EXTENSION);
+    $UploadFileSA       = 'Site ' . $SiteId . ' ' . $SiteName . ' ' . date('d - M - Y') . pathinfo($_FILES['UploadFileSA']['name'], PATHINFO_EXTENSION);
 
     $uploaded = move_uploaded_file($_FILES['UploadFileSA']['tmp_name'], './../../assets/img/sa/' . $UploadFileSA);
 

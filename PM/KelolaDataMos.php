@@ -78,10 +78,11 @@ $_SESSION['start_time'] = time();
                 }
             }
             ?></center>
-        <div class="table-responsive" style="width: 80%;">
-            <table class="table table-bordered  table-striped table-hover" style="width: 100%;">
+        <div class="table-responsive">
+            <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
                     <th>No</th>
+                    <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Site Type</th>
                     <th>Pic On Site</th>
@@ -89,8 +90,6 @@ $_SESSION['start_time'] = time();
                     <th>Penanggung Jawab Vendor</th>
                     <th>Toco Name</th>
                     <th>Sow</th>
-                    <th>Foto Material</th>
-                    <th>Foto Pic On Site</th>
                     <th>Action</th>
                 </tr>
 
@@ -116,6 +115,7 @@ $_SESSION['start_time'] = time();
                         $UploadFotoPicOnSite      = $data['UploadFotoPicOnSite'];
                         ?>
                         <tr align="rights">
+                            <td><?= $no++; ?></td>
                             <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $SiteType; ?></td>
@@ -124,12 +124,6 @@ $_SESSION['start_time'] = time();
                             <td><?= $PenanggungJawabVendor; ?></td>
                             <td><?= $TocoName; ?></td>
                             <td><?= $Sow; ?></td>
-                            <td>
-                                <img src="./../assets/img/mos/<?= $UploadFotoMaterial; ?>" alt="" width="300px" height="300px">
-                            </td>
-                            <td>
-                                <img src="./../assets/img/mos/<?= $UploadFotoPicOnSite; ?>" alt="" width="300px" height="300px">
-                            </td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
                                 <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>

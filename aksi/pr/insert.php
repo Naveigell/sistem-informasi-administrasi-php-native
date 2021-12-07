@@ -21,7 +21,7 @@ if (isset($_POST['tambahpr']))
     $TanggalSubmit           = $_POST['TanggalSubmit'];
     $TanggalApproved         = $_POST['TanggalApproved'];
 
-    $UploadFilePR            = mt_rand(100000, 1000000) . date('dmYHis.') . pathinfo($_FILES['UploadFilePR']['name'], PATHINFO_EXTENSION);
+    $UploadFilePR            = 'Site ' . $SiteId . ' ' . $SiteName . ' ' . date('d - M - Y') . pathinfo($_FILES['UploadFilePR']['name'], PATHINFO_EXTENSION);
 
     $uploaded = move_uploaded_file($_FILES['UploadFilePR']['tmp_name'], './../../assets/img/pr/' . $UploadFilePR);
 

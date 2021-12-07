@@ -80,6 +80,7 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
+                    <th>No</th>
                     <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Band Type</th>
@@ -119,6 +120,7 @@ $_SESSION['start_time'] = time();
                         $UploadFileSA          = $data['UploadFileSA'];
                         ?>
                         <tr align="rights">
+                            <td><?= $no++; ?></td>
                             <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $BandType; ?></td>
@@ -127,9 +129,9 @@ $_SESSION['start_time'] = time();
                             <td><?= $BTSType; ?></td>
                             <td><?= $PONumber; ?></td>
                             <td><?= $SiteType; ?></td>
-                            <td><?= $TanggalAudit; ?></td>
-                            <td><?= $TanggalSubmit; ?></td>
-                            <td><?= $TanggalApproved; ?></td>
+                            <td><?= date('m - d - Y', strtotime($TanggalAudit)); ?></td>
+                            <td><?= date('m - d - Y', strtotime($TanggalSubmit)); ?></td>
+                            <td><?= date('m - d - Y', strtotime($TanggalApproved)); ?></td>
                             <td><a class="text-primary" style="text-decoration: underline;" href="../assets/img/sir/<?= $UploadFileSA; ?>">Download</a></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>

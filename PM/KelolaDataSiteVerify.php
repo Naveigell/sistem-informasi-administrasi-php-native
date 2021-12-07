@@ -80,12 +80,11 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
+                    <th>No</th>
                     <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Toco Name</th>
                     <th>Sow</th>
-                    <th>Foto Cabinet Terbuka</th>
-                    <th>View Antena RUU</th>
                     <th>Aksi</th>
                 </tr>
 
@@ -108,16 +107,11 @@ $_SESSION['start_time'] = time();
 
                         ?>
                         <tr align="rights">
+                            <td><?= $no++; ?></td>
                             <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $TocoName; ?></td>
                             <td><?= $Sow; ?></td>
-                            <td>
-                                <img src="./../assets/img/site_verify/<?= $UploadFotoCabinet; ?>" alt="" width="300px" height="300px">
-                            </td>
-                            <td>
-                                <img src="./../assets/img/site_verify/<?= $ViewAntenaRUU; ?>" alt="" width="300px" height="300px">
-                            </td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
                                 <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>

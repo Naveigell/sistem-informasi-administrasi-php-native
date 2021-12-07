@@ -80,6 +80,7 @@ $_SESSION['start_time'] = time();
         <div class="table-responsive" >
             <table class="table table-bordered  table-striped table-hover">
                 <tr class="bg-primary" align="center">
+                    <th>No</th>
                     <th>Site Id</th>
                     <th>Site Name</th>
                     <th>Band Type</th>
@@ -113,6 +114,7 @@ $_SESSION['start_time'] = time();
                         $UploadFilePR            = $data['UploadFilePR'];
                         ?>
                         <tr align="rights">
+                            <td><?= $no++; ?></td>
                             <td><?= $SiteId; ?></td>
                             <td><?= $SiteName; ?></td>
                             <td><?= $BandType; ?></td>
