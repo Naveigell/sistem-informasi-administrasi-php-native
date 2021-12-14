@@ -76,6 +76,9 @@ $_SESSION['start_time'] = time();
                 else if($_GET['pesan']=="sukseshapus"){
                     echo "<div class='alert alert-success'>Data Mos sudah berhasil di Hapus !</div>";
                 }
+                else if($_GET['pesan']=="duplicate"){
+                    echo "<div class='alert alert-danger'>Id site data Mos tidak boleh sama !</div>";
+                }
             }
             ?></center>
         <div class="table-responsive">

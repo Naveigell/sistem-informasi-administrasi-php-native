@@ -34,7 +34,7 @@ if (isset($_POST['LoginUser']))
 			$_SESSION['Id']   = $Id;
 			$_SESSION['Level'] = "PM";
 		// alihkan ke halaman dashboard PM
-			header("location:../PM/homePM.php");
+			header("location: ../PM/homePM.php");
 			
 	// cek jika user login sebagai Admin
 		}else if($data['Level']=="Admin"){
@@ -42,7 +42,7 @@ if (isset($_POST['LoginUser']))
 			$_SESSION['User'] = $User;
 			$_SESSION['Level'] = "Admin";
 		// alihkan ke halaman dashboard Admin
-			header("location:../Admin/homeAdmin.php");
+			header("location: ../Admin/homeAdmin.php");
 			
 	// cek jika user login sebagai Team
 		}else if($data['Level']=="Team"){
@@ -50,15 +50,15 @@ if (isset($_POST['LoginUser']))
 			$_SESSION['User'] = $User;
 			$_SESSION['Level'] = "Team";
 		// alihkan ke halaman dashboard Team
-			header("location:../Team/homeTeam.php");
+			header("location: ../Team/homeTeam.php");
 			
 		}else{
 			
 		// alihkan ke halaman login kembali
-			header("location:index.php?pesan=gagal");
+			header("location: /?pesan=gagallogin");
 		}	
 	}else{
-		header("location:index.php?pesan=gagal");
+		header("location: /?pesan=gagallogin");
 	}
 }
 
