@@ -40,6 +40,9 @@ if (isset($_POST['LoginUser']))
 		}else if($data['Level']=="Admin"){
 		// buat session login dan username
 			$_SESSION['User'] = $User;
+			$_SESSION['Pass'] = $Pass;
+			$_SESSION['Nama'] = $Nama;
+			$_SESSION['Id']   = $Id;
 			$_SESSION['Level'] = "Admin";
 		// alihkan ke halaman dashboard Admin
 			header("location: ../Admin/homeAdmin.php");
@@ -48,6 +51,9 @@ if (isset($_POST['LoginUser']))
 		}else if($data['Level']=="Team"){
 		// buat session login dan username
 			$_SESSION['User'] = $User;
+			$_SESSION['Pass'] = $Pass;
+			$_SESSION['Nama'] = $Nama;
+			$_SESSION['Id']   = $Id;
 			$_SESSION['Level'] = "Team";
 		// alihkan ke halaman dashboard Team
 			header("location: ../Team/homeTeam.php");

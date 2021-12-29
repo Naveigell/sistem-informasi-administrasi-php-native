@@ -24,6 +24,8 @@ if($_SESSION['Pass']==""){
      }
    }
    $_SESSION['start_time'] = time();
+
+    $counter = require_once '../aksi/data_counter.php';
    ?>
 
    <html>
@@ -62,9 +64,103 @@ if($_SESSION['Pass']==""){
 
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
-            <h2 class="mb-4">Sidebar #06</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="header">
+                <div class="row">
+                    <div class="col-4" style="">
+                        <div class="card" style="">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between" style="font-size: 25px;">
+                                    <div><i class="fa fa-tasks"></i></div>
+                                    <div><?= $counter['mos']; ?> &nbsp; MOS</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" style="">
+                        <div class="card" style="">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between" style="font-size: 25px;">
+                                    <div><i class="fa fa-tasks"></i></div>
+                                    <div><?= $counter['site_verify']; ?> &nbsp; Site Verify</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" style="">
+                        <div class="card" style="">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between" style="font-size: 25px;">
+                                    <div><i class="fa fa-tasks"></i></div>
+                                    <div><?= $counter['site_integrasi']; ?> &nbsp; Site Integrasi</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4" style="">
+                        <div class="card" style="">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between" style="font-size: 25px;">
+                                    <div><i class="fa fa-tasks"></i></div>
+                                    <div><?= $counter['pr']; ?> &nbsp; PR</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" style="">
+                        <div class="card" style="">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between" style="font-size: 25px;">
+                                    <div><i class="fa fa-tasks"></i></div>
+                                    <div><?= $counter['sa']; ?> &nbsp; SA</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" style="">
+                        <div class="card" style="">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between" style="font-size: 25px;">
+                                    <div><i class="fa fa-tasks"></i></div>
+                                    <div><?= $counter['sir']; ?> &nbsp; SIR</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">Task Progress Summary</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label for="filter">Filter</label>
+                            <input type="month" class="form-control" id="filter">
+                        </div>
+                    </div>
+
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -73,56 +169,38 @@ if($_SESSION['Pass']==""){
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
 
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
 
-
-
-    <div class="modal fade" id="Profil" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <a class="modal-title" href="#"><img src="../assets/img/user.png" width="40"></a>
-            &nbsp;&nbsp;&nbsp;<h4 class="modal-title">Profil User</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <form method="POST" action="../koneksi/koneksigantipassword.php">
-            <div class="modal-body">
-              <div class="form-group" hidden="true">
-                <Label class="control-label"><h5>ID</h5></Label>
-                <input type="text" name="Id" value="<?php echo $_SESSION['Id']; ?>" class="form-control" autocomplete="off" readonly>
-              </div>
-              <div class="form-group">
-                <Label class="control-label"><h5>Nama</h5></Label>
-                <input type="text" name="Nama" value="<?php echo $_SESSION['Nama']; ?>" class="form-control" autocomplete="off" readonly>
-              </div>
-              <div class="form-group">
-                <Label class="control-label"><h5>Username</h5></Label>
-                <input type="text" name="User" value="<?php echo $_SESSION['User']; ?>" class="form-control" autocomplete="off" readonly>
-              </div>
-              <div class="form-group"  hidden="true">
-                <Label class="control-label"><h5>Password</h5></Label>
-                <input type="text" name="Pass" value="<?php echo $_SESSION['Pass']; ?>" class="form-control" autocomplete="off" readonly>
-              </div>
-              <div class="form-group">
-                <Label class="control-label"><h5>Ganti Password</h5></Label>
-                <input type="Password" name="PasswordLama" placeholder="Masukkan Password Lama" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <input type="Password" name="PasswordBaru" placeholder="Masukkan Password Baru" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <input type="Password" name="RetypePasswordBaru" placeholder="Masukkan Lagi Password Baru " class="form-control" required>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-warning" name="GantiPasswordPM">Ganti Password</button>
-              <a class="btn btn-danger" href="../koneksi/logout.php">Logout</a>
-            </div> 
-          </form>
-        </div>
-      </div>    
-    </div>
-
-
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+    </script>
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
   </body>        
   </html>

@@ -128,8 +128,10 @@ $_SESSION['start_time'] = time();
                             <td><?= date('m - d - Y', strtotime($TanggalApproved)); ?></td>
                             <td><a class="text-primary" style="text-decoration: underline;" href="../assets/img/pr/<?= $UploadFilePR; ?>">Download</a></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
-                                <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <?php if ($_SESSION['Level'] !== 'Team') : ?>
+                                    <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
+                                    <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
+                                <?php endif; ?>
                                 <button type="button" class="btn btn-primary btn-sm fa fa-eye" data-target="#detail<?= $SiteId; ?>" data-toggle="modal"></button>
 
                                 <!-- Modal Hapus -->

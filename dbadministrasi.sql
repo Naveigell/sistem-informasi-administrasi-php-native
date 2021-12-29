@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 06:01 AM
+-- Generation Time: Dec 29, 2021 at 10:02 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -37,15 +37,16 @@ CREATE TABLE `tb_mos` (
   `TocoName` varchar(100) NOT NULL,
   `Sow` varchar(100) NOT NULL,
   `UploadFotoMaterial` varchar(100) NOT NULL,
-  `UploadFotoPicOnSite` varchar(100) NOT NULL
+  `UploadFotoPicOnSite` varchar(100) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_mos`
 --
 
-INSERT INTO `tb_mos` (`SiteId`, `SiteName`, `SiteType`, `PicOnSite`, `NoTelpPic`, `PenanggungJawabVendor`, `TocoName`, `Sow`, `UploadFotoMaterial`, `UploadFotoPicOnSite`) VALUES
-(12, 'qwereqwr', 'qwerwqer', 'wqerweqr', 'wqerwre', 'qwerewqr', 'qwereqwr', '324234', '84352904122021022210.png', '49118010220220211204.png');
+INSERT INTO `tb_mos` (`SiteId`, `SiteName`, `SiteType`, `PicOnSite`, `NoTelpPic`, `PenanggungJawabVendor`, `TocoName`, `Sow`, `UploadFotoMaterial`, `UploadFotoPicOnSite`, `CreatedAt`) VALUES
+(1234, 'Site nameeee', 'tewetr', 'sdfgsfdg', 'lkejfdlkqjadkla', 'ewrterwt', 'asdfsd', 'asdfdsaf', '22583106122021113423.jpeg', '63695223341120211206.png', '2021-12-29 09:00:47');
 
 -- --------------------------------------------------------
 
@@ -62,15 +63,17 @@ CREATE TABLE `tb_pr` (
   `SiteType` varchar(50) NOT NULL,
   `TanggalSubmit` timestamp NOT NULL DEFAULT current_timestamp(),
   `TanggalApproved` timestamp NOT NULL DEFAULT current_timestamp(),
-  `UploadFilePR` varchar(100) NOT NULL
+  `UploadFilePR` varchar(100) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_pr`
 --
 
-INSERT INTO `tb_pr` (`SiteId`, `SiteName`, `BandType`, `DetailSow`, `DetailEQP`, `SiteType`, `TanggalSubmit`, `TanggalApproved`, `UploadFilePR`) VALUES
-(3, 'ASDFKJASDF', 'ALFJDAKSFJ', 'LAKDJSLKAJSF', 'jsakljdf', 'lkfsjklsdf', '2021-12-14 16:00:00', '2021-12-22 16:00:00', '34690304122021061344.docx');
+INSERT INTO `tb_pr` (`SiteId`, `SiteName`, `BandType`, `DetailSow`, `DetailEQP`, `SiteType`, `TanggalSubmit`, `TanggalApproved`, `UploadFilePR`, `CreatedAt`) VALUES
+(123, 'sdafasdf', 'update band type', 'ljaskdfj', 'lasjdflks', 'update site type', '2021-12-14 16:00:00', '2021-12-22 16:00:00', '20457906122021111324.exe', '2021-12-29 09:01:06'),
+(45345, 'update site name ', 'update band type', 'ljaskdfj', 'sdafdsfa', 'update site type', '2021-12-08 16:00:00', '2021-12-22 16:00:00', 'Site 45345 update site name  08 - Dec - 2021.sql', '2021-12-29 09:01:06');
 
 -- --------------------------------------------------------
 
@@ -89,16 +92,17 @@ CREATE TABLE `tb_sa` (
   `SiteType` varchar(100) NOT NULL,
   `TanggalSubmit` timestamp NOT NULL DEFAULT current_timestamp(),
   `TanggalApproved` timestamp NOT NULL DEFAULT current_timestamp(),
-  `UploadFileSA` varchar(255) NOT NULL
+  `UploadFileSA` varchar(255) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_sa`
 --
 
-INSERT INTO `tb_sa` (`SiteId`, `SiteName`, `BandType`, `DetailSow`, `SiteConfig`, `BTSType`, `PONumber`, `SiteType`, `TanggalSubmit`, `TanggalApproved`, `UploadFileSA`) VALUES
-(2, 'update site name ', 'update band type', 'update detail', 'update config', 'update bts', 'update po', 'update site type', '2021-12-02 16:00:00', '2021-12-20 16:00:00', '36664305122021081926.xlsx'),
-(3, 'sdafasdf', 'kjashdlkfdsa', 'ljaskdfj', 'COnfigigigii', 'BTSKSJKSJ', 'Popopopopopo', 'dfsgsdfg', '2021-12-06 16:00:00', '2021-12-09 16:00:00', '86516605122021073513.xlsx');
+INSERT INTO `tb_sa` (`SiteId`, `SiteName`, `BandType`, `DetailSow`, `SiteConfig`, `BTSType`, `PONumber`, `SiteType`, `TanggalSubmit`, `TanggalApproved`, `UploadFileSA`, `CreatedAt`) VALUES
+(3, 'sdafasdf', 'kjashdlkfdsa', 'ljaskdfj', 'COnfigigigii', 'BTSKSJKSJ', 'Popopopopopo', 'dfsgsdfg', '2021-12-06 16:00:00', '2021-12-09 16:00:00', '86516605122021073513.xlsx', '2021-12-29 09:01:19'),
+(123, 'update site name ', 'update band type', 'update detail', 'update config ------------------------', 'update bts -----------', 'update po', 'update site type', '2021-12-02 16:00:00', '2021-12-20 16:00:00', '17223006122021110428.sql', '2021-12-29 09:01:19');
 
 -- --------------------------------------------------------
 
@@ -118,16 +122,17 @@ CREATE TABLE `tb_sir` (
   `TanggalAudit` timestamp NOT NULL DEFAULT current_timestamp(),
   `TanggalSubmit` timestamp NOT NULL DEFAULT current_timestamp(),
   `TanggalApproved` timestamp NOT NULL DEFAULT current_timestamp(),
-  `UploadFileSA` varchar(255) NOT NULL
+  `UploadFileSA` varchar(255) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_sir`
 --
 
-INSERT INTO `tb_sir` (`SiteId`, `SiteName`, `BandType`, `DetailSow`, `SiteConfig`, `BTSType`, `PONumber`, `SiteType`, `TanggalAudit`, `TanggalSubmit`, `TanggalApproved`, `UploadFileSA`) VALUES
-(2, 'update site name ', 'update band type', 'update detail', 'update config', 'update bts', 'update po', 'update site type', '2021-12-08 16:00:00', '2021-12-10 16:00:00', '2021-12-29 16:00:00', '18604605122021082445.xlsx'),
-(3, 'sdafasdf', 'kjashdlkfdsa', 'ljaskdfj', '1111111111111', '111111111111', 'Popopopopopo', 'tewetr', '2021-12-08 16:00:00', '2021-12-10 16:00:00', '2021-12-29 16:00:00', '75649905122021081211.xlsx');
+INSERT INTO `tb_sir` (`SiteId`, `SiteName`, `BandType`, `DetailSow`, `SiteConfig`, `BTSType`, `PONumber`, `SiteType`, `TanggalAudit`, `TanggalSubmit`, `TanggalApproved`, `UploadFileSA`, `CreatedAt`) VALUES
+(55, 'update site name ', 'update band type', 'update detail', 'update config', 'update bts', 'update po', 'update site type', '2021-12-08 16:00:00', '2021-12-10 16:00:00', '2021-12-29 16:00:00', '10940306122021102611.sql', '2021-12-29 09:01:34'),
+(66, 'sdafasdf', 'kjashdlkfdsa', 'ljaskdfj', '1111111111111', '111111111111', 'Popopopopopo', 'tewetr', '2021-12-08 16:00:00', '2021-12-10 16:00:00', '2021-12-29 16:00:00', '81239306122021102646.pdf', '2021-12-29 09:01:34');
 
 -- --------------------------------------------------------
 
@@ -145,8 +150,16 @@ CREATE TABLE `tb_site_integrasi` (
   `EnginerId` varchar(100) NOT NULL,
   `EnginerName` varchar(100) NOT NULL,
   `IntegratorName` varchar(100) NOT NULL,
-  `NoHpIntegrator` varchar(20) NOT NULL
+  `NoHpIntegrator` varchar(20) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_site_integrasi`
+--
+
+INSERT INTO `tb_site_integrasi` (`SiteId`, `SiteName`, `Sow`, `BandType`, `BTSType`, `SiteConfig`, `EnginerId`, `EnginerName`, `IntegratorName`, `NoHpIntegrator`, `CreatedAt`) VALUES
+(45345, 'sdafasdf', 'werterwt', 'update band type', 'BTS Typeoeej', 'newwwwwwww', 'newwwwwwww', 'newwwwwwww', 'newwwwwwww', 'newwwwwwww', '2021-12-29 09:02:03');
 
 -- --------------------------------------------------------
 
@@ -160,15 +173,17 @@ CREATE TABLE `tb_site_verify` (
   `TocoName` varchar(100) NOT NULL,
   `Sow` varchar(100) NOT NULL,
   `UploadFotoCabinet` varchar(255) NOT NULL,
-  `ViewAntenaRUU` varchar(255) NOT NULL
+  `ViewAntenaRUU` varchar(255) NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_site_verify`
 --
 
-INSERT INTO `tb_site_verify` (`SiteId`, `SiteName`, `TocoName`, `Sow`, `UploadFotoCabinet`, `ViewAntenaRUU`) VALUES
-(3, 'sdasdafdfsa', 'tesasdfasdfsda', 'tsasddsaffa', '13913705122021092807.jpg', 'dfgsdgsadfasdfdasf');
+INSERT INTO `tb_site_verify` (`SiteId`, `SiteName`, `TocoName`, `Sow`, `UploadFotoCabinet`, `ViewAntenaRUU`, `CreatedAt`) VALUES
+(3, 'Hello worlf', 'tesasdfasdfsda', 'tsasddsaffa', '18633508122021011501.jpg', '94382608122021011501.png', '2021-12-29 09:02:15'),
+(45345, 'sdafasdf', 'ertwewrt', 'werterwt', '83837706122021080457.jpeg', '57965706122021080457.png', '2021-12-29 09:02:15');
 
 -- --------------------------------------------------------
 
@@ -191,9 +206,9 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`Id`, `Nama`, `User`, `Pass`, `Email`, `NoHp`, `Level`) VALUES
-(7, 'Ocoh', 'ocoh', '81dc9bdb52d04dc20036dbd8313ed055', 'pramono.pramono.ext@nokia.com', '11111111', 'PM'),
-(10, 'Ocoh', 'ocoh', '81dc9bdb52d04dc20036dbd8313ed055', 'pramono.pramono.ext@nokia.com', '11111111', 'Admin'),
-(11, '', '', '', '', '', '');
+(10, 'Ocoh', 'ocoh', 'b59c67bf196a4758191e42f76670ceba', 'pramono.pramono.ext@nokia.com', '11111111', 'Admin'),
+(12, 'Teguh', 'teguh', 'b59c67bf196a4758191e42f76670ceba', 'teguh@gmail.com', '0937124985', 'PM'),
+(13, 'team', 'team', 'b59c67bf196a4758191e42f76670ceba', 'team@gmail.com', '0937124985', 'Team');
 
 --
 -- Indexes for dumped tables
@@ -249,7 +264,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
