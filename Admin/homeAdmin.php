@@ -153,8 +153,10 @@ $counter = require_once '../aksi/data_counter.php';
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-3">
-                        <label for="filter">Filter</label>
-                        <input type="month" class="form-control" id="filter">
+                        <form action="">
+                            <label for="filter">Filter</label>
+                            <input type="month" class="form-control" id="filter" name="month">
+                        </form>
                     </div>
                 </div>
 
@@ -209,6 +211,12 @@ $counter = require_once '../aksi/data_counter.php';
         document.getElementById('myChart'),
         config
     );
+
+    $(document).ready(function () {
+        $('input[type="month"]').on('change', function () {
+            $('form').submit();
+        })
+    })
 </script>
 </body>
 </html>

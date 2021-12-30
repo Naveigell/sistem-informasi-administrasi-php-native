@@ -112,8 +112,10 @@ $counter = require_once '../aksi/data_counter.php';
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-3">
-                        <label for="filter">Filter</label>
-                        <input type="month" class="form-control" id="filter">
+                        <form action="">
+                            <label for="filter">Filter</label>
+                            <input type="month" class="form-control" id="filter" name="month" value="<?= array_key_exists('month', $_GET) ? $_GET['month'] : ''; ?>">
+                        </form>
                     </div>
                 </div>
 
@@ -131,28 +133,33 @@ $counter = require_once '../aksi/data_counter.php';
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
+        'MOS',
+        'Site Verify',
+        'Site Integrasi',
     ];
 
     const data = {
         labels: labels,
         datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
+            label: 'Total',
+            backgroundColor: 'rgb(49,166,239)',
+            data: [<?= $counter['mos']; ?>, <?= $counter['site_verify']; ?>, <?= $counter['site_integrasi']; ?>],
         }]
     };
 
     const config = {
-        type: 'line',
+        type: 'bar',
         data: data,
-        options: {}
+        options: {
+            scales: {
+                y: {
+                    ticks: {
+                        stepSize: 1,
+                        beginAtZero: true,
+                    },
+                },
+            },
+        }
     };
 </script>
 <script>
@@ -160,6 +167,12 @@ $counter = require_once '../aksi/data_counter.php';
         document.getElementById('myChart'),
         config
     );
+
+    $(document).ready(function () {
+        $('input[type="month"]').on('change', function () {
+            $('form').submit();
+        })
+    })
 </script>
 </body>
 </html>

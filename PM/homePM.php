@@ -153,12 +153,89 @@ if($_SESSION['Pass']==""){
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-3">
-                            <label for="filter">Filter</label>
-                            <input type="month" class="form-control" id="filter">
+                            <form action="">
+                                <label for="filter">Filter</label>
+                                <input type="month" class="form-control" id="filter" name="month">
+                            </form>
                         </div>
                     </div>
-
                     <canvas id="myChart"></canvas>
+                    <br>
+                    <br>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr class="text-center">
+                            <th class="col-1" scope="col">No</th>
+                            <th class="col-10" scope="col">Detail</th>
+                            <th class="col-1" scope="col">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php $total = 0; $i = 1; foreach (array_keys($counter) as $key) : ?>
+                                <?php if (in_array($key, ['tracker'])) continue; ?>
+                                <tr>
+                                    <th class="text-center" scope="row"><?= $i++; ?></th>
+                                    <td class="pl-4"><?= ucwords(str_replace('_', ' ', $key)); ?></td>
+                                    <td class="text-center"><?= $counter[$key]; ?></td>
+                                </tr>
+                                <?php $total += $counter[$key]; ?>
+                            <?php endforeach; ?>
+                            <tr>
+                                <th colspan="2" class="pl-4">Grand Total</th>
+                                <th class="text-center"><?= $total; ?></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            Data Tracker
+                        </div>
+                        <a href="#" class="btn btn-sm btn-success">
+                            <i class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Site Id</th>
+                            <th scope="col">Site Name</th>
+                            <th scope="col">Toco Name</th>
+                            <th scope="col">SOW</th>
+                            <th scope="col">Tanggal MOS</th>
+                            <th scope="col">PIC MOS</th>
+                            <th scope="col">Tanggal Site Verify</th>
+                            <th scope="col">Tanggal Site Integrasi</th>
+                            <th scope="col">Tanggal PR Approved</th>
+                            <th scope="col">Tanggal SA Approved</th>
+                            <th scope="col">Tanggal SIR Approved</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $i = 1; while ($row = mysqli_fetch_object($counter['tracker'])): ?>
+                            <tr>
+                                <th scope="row"><?= $i++; ?></th>
+                                <td><?= $row->SiteId; ?></td>
+                                <td><?= $row->SiteName; ?></td>
+                                <td><?= $row->TocoName; ?></td>
+                                <td><?= $row->Sow; ?></td>
+                                <td><?= date('m - d - Y', strtotime($row->MosDate)); ?></td>
+                                <td><?= $row->PicOnSite; ?></td>
+                                <td><?= date('m - d - Y', strtotime($row->SiteVerifyDate)); ?></td>
+                                <td><?= date('m - d - Y', strtotime($row->SiteIntegrasiDate)); ?></td>
+                                <td><?= date('m - d - Y', strtotime($row->PRApproved)); ?></td>
+                                <td><?= date('m - d - Y', strtotime($row->SAApproved)); ?></td>
+                                <td><?= date('m - d - Y', strtotime($row->SIRApproved)); ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -172,28 +249,36 @@ if($_SESSION['Pass']==""){
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
+            'MOS',
+            'Site Verify',
+            'Site Integrasi',
+            'PR',
+            'SA',
+            'SIR',
         ];
 
         const data = {
             labels: labels,
             datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
+                label: 'Total',
+                backgroundColor: 'rgb(49,166,239)',
+                data: [<?= $counter['mos']; ?>, <?= $counter['site_verify']; ?>, <?= $counter['site_integrasi']; ?>, <?= $counter['pr']; ?>, <?= $counter['sa']; ?>, <?= $counter['sir']; ?>],
             }]
         };
 
         const config = {
-            type: 'line',
+            type: 'bar',
             data: data,
-            options: {}
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            stepSize: 1,
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            }
         };
     </script>
     <script>
@@ -201,6 +286,12 @@ if($_SESSION['Pass']==""){
             document.getElementById('myChart'),
             config
         );
+
+        $(document).ready(function () {
+            $('input[type="month"]').on('change', function () {
+                $('form').submit();
+            })
+        })
     </script>
   </body>        
   </html>
