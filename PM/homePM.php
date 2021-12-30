@@ -75,7 +75,7 @@ if($_SESSION['Pass']==""){
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                                <a href="../pages/KelolaDataMos.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ if($_SESSION['Pass']==""){
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                                <a href="../pages/KelolaDataSiteVerify.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ if($_SESSION['Pass']==""){
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                                <a href="../pages/KelolaDataSiteIntegrasi.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@ if($_SESSION['Pass']==""){
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                                <a href="../pages/KelolaDataPR.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ if($_SESSION['Pass']==""){
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                                <a href="../pages/KelolaDataSA.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@ if($_SESSION['Pass']==""){
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                                <a href="../pages/KelolaDataSir.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -155,7 +155,7 @@ if($_SESSION['Pass']==""){
                         <div class="form-group col-3">
                             <form action="">
                                 <label for="filter">Filter</label>
-                                <input type="month" class="form-control" id="filter" name="month">
+                                <input type="month" class="form-control" id="filter" name="month" value="<?= array_key_exists('month', $_GET) ? $_GET['month'] : ''; ?>">
                             </form>
                         </div>
                     </div>
@@ -194,9 +194,11 @@ if($_SESSION['Pass']==""){
                         <div>
                             Data Tracker
                         </div>
-                        <a href="#" class="btn btn-sm btn-success">
-                            <i class="fa fa-print"></i>
-                        </a>
+                        <?php if ($counter['tracker']->num_rows > 0) : ?>
+                            <a href="../helpers/excel.php<?= count($_GET) > 0 ? '?' . http_build_query($_GET) : ''; ?>" class="btn btn-sm btn-success">
+                                <i class="fa fa-print"></i>
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="card-body">
@@ -218,22 +220,28 @@ if($_SESSION['Pass']==""){
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $i = 1; while ($row = mysqli_fetch_object($counter['tracker'])): ?>
+                        <?php if ($counter['tracker']->num_rows > 0) : ?>
+                            <?php $i = 1; while ($row = mysqli_fetch_object($counter['tracker'])): ?>
+                                <tr>
+                                    <th scope="row"><?= $i++; ?></th>
+                                    <td><?= $row->SiteId; ?></td>
+                                    <td><?= $row->SiteName; ?></td>
+                                    <td><?= $row->TocoName; ?></td>
+                                    <td><?= $row->Sow; ?></td>
+                                    <td><?= date('m - d - Y', strtotime($row->MosDate)); ?></td>
+                                    <td><?= $row->PicOnSite; ?></td>
+                                    <td><?= date('m - d - Y', strtotime($row->SiteVerifyDate)); ?></td>
+                                    <td><?= date('m - d - Y', strtotime($row->SiteIntegrasiDate)); ?></td>
+                                    <td><?= date('m - d - Y', strtotime($row->PRApproved)); ?></td>
+                                    <td><?= date('m - d - Y', strtotime($row->SAApproved)); ?></td>
+                                    <td><?= date('m - d - Y', strtotime($row->SIRApproved)); ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
                             <tr>
-                                <th scope="row"><?= $i++; ?></th>
-                                <td><?= $row->SiteId; ?></td>
-                                <td><?= $row->SiteName; ?></td>
-                                <td><?= $row->TocoName; ?></td>
-                                <td><?= $row->Sow; ?></td>
-                                <td><?= date('m - d - Y', strtotime($row->MosDate)); ?></td>
-                                <td><?= $row->PicOnSite; ?></td>
-                                <td><?= date('m - d - Y', strtotime($row->SiteVerifyDate)); ?></td>
-                                <td><?= date('m - d - Y', strtotime($row->SiteIntegrasiDate)); ?></td>
-                                <td><?= date('m - d - Y', strtotime($row->PRApproved)); ?></td>
-                                <td><?= date('m - d - Y', strtotime($row->SAApproved)); ?></td>
-                                <td><?= date('m - d - Y', strtotime($row->SIRApproved)); ?></td>
+                                <td colspan="12" class="text-center">Tidak ada data</td>
                             </tr>
-                        <?php endwhile; ?>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

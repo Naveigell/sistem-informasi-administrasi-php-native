@@ -75,7 +75,7 @@ $counter = require_once '../aksi/data_counter.php';
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            <a href="../pages/KelolaDataPR.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ $counter = require_once '../aksi/data_counter.php';
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            <a href="../pages/KelolaDataSA.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ $counter = require_once '../aksi/data_counter.php';
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            <a href="../pages/KelolaDataSir.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ $counter = require_once '../aksi/data_counter.php';
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            <a href="../pages/KelolaDataMos.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ $counter = require_once '../aksi/data_counter.php';
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            <a href="../pages/KelolaDataSiteVerify.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ $counter = require_once '../aksi/data_counter.php';
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                            <a href="../pages/KelolaDataSiteIntegrasi.php" style="color: #acacac;">Lihat Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -155,7 +155,7 @@ $counter = require_once '../aksi/data_counter.php';
                     <div class="form-group col-3">
                         <form action="">
                             <label for="filter">Filter</label>
-                            <input type="month" class="form-control" id="filter" name="month">
+                            <input type="month" class="form-control" id="filter" name="month" value="<?= array_key_exists('month', $_GET) ? $_GET['month'] : ''; ?>">
                         </form>
                     </div>
                 </div>
