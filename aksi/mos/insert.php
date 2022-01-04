@@ -8,7 +8,7 @@ if (isset($_POST['tambahmos']))
 
     $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_mos WHERE SiteId='$SiteId'"));
     if ($cek > 0){
-        header("location: ./../../PM/KelolaDataMos.php?pesan=duplicate");
+        header("location: ./../../pages/KelolaDataMos.php?pesan=duplicate");
 
         return;
     }
@@ -31,9 +31,9 @@ if (isset($_POST['tambahmos']))
               VALUES('$SiteId', '$SiteName', '$SiteType', '$PicOnSite', '$NoTelpPic','$PenanggungJawabVendor', '$TocoName', '$Sow', '$UploadFotoMaterial', '$UploadFotoPicOnSite')";
         $result = mysqli_query($db, $query);
 
-        header("location: ./../../PM/KelolaDataMos.php?pesan=suksestambah");
+        header("location: ./../../pages/KelolaDataMos.php?pesan=suksestambah");
     } else {
 
-        header("location: ./../../PM/KelolaDataMos.php?pesan=gagaltambah");
+        header("location: ./../../pages/KelolaDataMos.php?pesan=gagaltambah");
     }
 }

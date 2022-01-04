@@ -10,5 +10,5 @@ if (isset($_POST['btnHapus']))
 
     mysqli_query($db, "DELETE FROM tb_pr WHERE SiteId='$SiteId'");
 
-    header("location: ./../../PM/KelolaDataPr.php?pesan=sukseshapus");
+    header("location: ./../../pages/KelolaDataPr.php?pesan=sukseshapus");
 }

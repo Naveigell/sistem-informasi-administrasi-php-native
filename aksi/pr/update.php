@@ -17,7 +17,7 @@ if (isset($_POST['btnEdit']))
     if ($Id != $SiteId) {
         $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_pr WHERE SiteId='$SiteId'"));
         if ($cek > 0){
-            header("location: ./../../PM/KelolaDataPR.php?pesan=duplicate");
+            header("location: ./../../pages/KelolaDataPR.php?pesan=duplicate");
 
             return;
         }
@@ -31,9 +31,9 @@ if (isset($_POST['btnEdit']))
         $query = "UPDATE tb_pr SET SiteId='$SiteId', SiteName = '$SiteName', BandType = '$BandType', DetailSow = '$DetailSow', DetailEQP = '$DetailEQP', SiteType = '$SiteType', TanggalSubmit = '$TanggalSubmit', TanggalApproved = '$TanggalApproved', UploadFilePR = '$UploadFilePR' WHERE SiteId='$Id'";
         $result = mysqli_query($db, $query);
 
-        header("location: ./../../PM/KelolaDataPR.php?pesan=suksesedit");
+        header("location: ./../../pages/KelolaDataPR.php?pesan=suksesedit");
     } else {
 
-        header("location: ./../../PM/KelolaDataPR.php?pesan=gagaledit");
+        header("location: ./../../pages/KelolaDataPR.php?pesan=gagaledit");
     }
 }

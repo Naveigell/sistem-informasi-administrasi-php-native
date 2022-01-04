@@ -8,7 +8,7 @@ if (isset($_POST['tambahpr']))
 
     $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_pr WHERE SiteId='$SiteId'"));
     if ($cek > 0){
-        header("location: ./../../PM/KelolaDataPR.php?pesan=duplicate");
+        header("location: ./../../pages/KelolaDataPR.php?pesan=duplicate");
 
         return;
     }
@@ -30,10 +30,10 @@ if (isset($_POST['tambahpr']))
               VALUES('$SiteId', '$SiteName', '$BandType', '$DetailSow', '$DetailEQP','$SiteType', '$TanggalSubmit', '$TanggalApproved', '$UploadFilePR')";
         $result = mysqli_query($db, $query);
 
-        header("location: ./../../PM/KelolaDataPR.php?pesan=suksestambah");
+        header("location: ./../../pages/KelolaDataPR.php?pesan=suksestambah");
     } else {
 
-        header("location: ./../../PM/KelolaDataPR.php?pesan=gagaltambah");
+        header("location: ./../../pages/KelolaDataPR.php?pesan=gagaltambah");
     }
 
 }

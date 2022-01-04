@@ -8,7 +8,7 @@ if (isset($_POST['tambahsiteintegrasi']))
 
     $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_site_integrasi WHERE SiteId='$SiteId'"));
     if ($cek > 0){
-        header("location: ./../../PM/KelolaDataSiteIntegrasi.php?pesan=duplicate");
+        header("location: ./../../pages/KelolaDataSiteIntegrasi.php?pesan=duplicate");
 
         return;
     }
@@ -29,9 +29,9 @@ if (isset($_POST['tambahsiteintegrasi']))
     $result = mysqli_query($db, $query);
 
     if ($result) {
-        header("location: ./../../PM/KelolaDataSiteIntegrasi.php?pesan=suksestambah");
+        header("location: ./../../pages/KelolaDataSiteIntegrasi.php?pesan=suksestambah");
     } else {
-        header("location: ./../../PM/KelolaDataSiteIntegrasi.php?pesan=gagaltambah");
+        header("location: ./../../pages/KelolaDataSiteIntegrasi.php?pesan=gagaltambah");
     }
 
 }

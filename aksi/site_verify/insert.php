@@ -11,7 +11,7 @@ if (isset($_POST['tambahsiteverify']))
 
     $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_site_verify WHERE SiteId='$SiteId'"));
     if ($cek > 0){
-        header("location: ./../../PM/KelolaDataSiteVerify.php?pesan=duplicate");
+        header("location: ./../../pages/KelolaDataSiteVerify.php?pesan=duplicate");
 
         return;
     }
@@ -28,9 +28,9 @@ if (isset($_POST['tambahsiteverify']))
 
         $result = mysqli_query($db, $query);
 
-        header("location: ./../../PM/KelolaDataSiteVerify.php?pesan=suksestambah");
+        header("location: ./../../pages/KelolaDataSiteVerify.php?pesan=suksestambah");
     } else {
 
-        header("location: ./../../PM/KelolaDataSiteVerify.php?pesan=gagaltambah");
+        header("location: ./../../pages/KelolaDataSiteVerify.php?pesan=gagaltambah");
     }
 }

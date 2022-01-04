@@ -8,7 +8,7 @@ if (isset($_POST['tambahsir']))
 
     $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_sir WHERE SiteId='$SiteId'"));
     if ($cek > 0){
-        header("location: ./../../PM/KelolaDataSir.php?pesan=duplicate");
+        header("location: ./../../pages/KelolaDataSir.php?pesan=duplicate");
 
         return;
     }
@@ -33,10 +33,10 @@ if (isset($_POST['tambahsir']))
               VALUES('$SiteId', '$SiteName', '$BandType', '$DetailSow', '$SiteConfig','$BTSType', '$PONumber', '$SiteType', '$TanggalAudit', '$TanggalSubmit', '$TanggalApproved', '$UploadFileSA')";
         $result = mysqli_query($db, $query);
 
-        header("location: ./../../PM/KelolaDataSir.php?pesan=suksestambah");
+        header("location: ./../../pages/KelolaDataSir.php?pesan=suksestambah");
     } else {
 
-        header("location: ./../../PM/KelolaDataSir.php?pesan=gagaltambah");
+        header("location: ./../../pages/KelolaDataSir.php?pesan=gagaltambah");
     }
 
 }

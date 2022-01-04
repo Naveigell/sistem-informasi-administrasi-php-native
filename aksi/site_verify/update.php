@@ -10,7 +10,7 @@ if (isset($_POST['btnEdit']))
     if ($Id != $SiteId) {
         $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_site_verify WHERE SiteId='$SiteId'"));
         if ($cek > 0){
-            header("location: ./../../PM/KelolaDataSiteVerify.php?pesan=duplicate");
+            header("location: ./../../pages/KelolaDataSiteVerify.php?pesan=duplicate");
 
             return;
         }
@@ -30,9 +30,9 @@ if (isset($_POST['btnEdit']))
         $query = "UPDATE tb_site_verify SET SiteId = '$SiteId', SiteName = '$SiteName', TocoName = '$TocoName', Sow = '$Sow',  UploadFotoCabinet = '$UploadFotoCabinet', ViewAntenaRUU = '$ViewAntenaRUU' WHERE SiteId='$Id'";
         $result = mysqli_query($db, $query);
 
-        header("location: ./../../PM/KelolaDataSiteVerify.php?pesan=suksesedit");
+        header("location: ./../../pages/KelolaDataSiteVerify.php?pesan=suksesedit");
     } else {
 
-        header("location: ./../../PM/KelolaDataSiteVerify.php?pesan=gagaledit");
+        header("location: ./../../pages/KelolaDataSiteVerify.php?pesan=gagaledit");
     }
 }
