@@ -24,7 +24,7 @@
                 &nbsp;&nbsp;&nbsp;<h4 class="modal-title">Profil User</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form method="POST" action="../koneksi/koneksigantipassword.php">
+            <form method="POST" action="../aksi/user/change_password.php">
                 <div class="modal-body">
                     <div class="form-group" hidden="true">
                         <Label class="control-label"><h5>ID</h5></Label>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-warning" name="GantiPasswordPM">Ganti Password</button>
+                    <button type="submit" class="btn btn-warning" name="GantiPassword">Ganti Password</button>
                     <a class="btn btn-danger" href="../koneksi/logout.php">Logout</a>
                 </div>
             </form>

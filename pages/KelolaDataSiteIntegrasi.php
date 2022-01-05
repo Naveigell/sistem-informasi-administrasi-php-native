@@ -131,7 +131,7 @@ $_SESSION['start_time'] = time();
                             <td><?= $IntegratorName; ?></td>
                             <td><?= $NoHpIntegrator; ?></td>
                             <td>
-                                <?php if ($_SESSION['Level'] !== 'Team') : ?>
+                                <?php if (!in_array($_SESSION['Level'], ['Team', 'Admin'])) : ?>
                                     <button type="button" class="btn btn-warning btn-sm fa fa-edit" data-target="#edit<?= $SiteId; ?>" data-toggle="modal"></button>
                                     <button type="button" class="btn btn-danger btn-sm fa fa-trash" data-target="#hapus<?= $SiteId; ?>" data-toggle="modal"></button>
                                 <?php endif; ?>

@@ -83,7 +83,6 @@ if($_SESSION['Pass']==""){
           <th>No</th>
           <th>Nama</th>
           <th>Username</th>
-          <th>Password</th>
           <th>Email</th>
           <th>No Hp</th>
           <th>Level</th>
@@ -112,7 +111,6 @@ if($_SESSION['Pass']==""){
               <td><?= $no++; ?></td>
               <td><?= $Nama; ?></td>
               <td><?= $User; ?></td>
-              <td><?= $Pass; ?></td>
               <td><?= $Email; ?></td>
               <td><?= $NoHp; ?></td>
               <td><?= $Level; ?></td>
@@ -171,11 +169,7 @@ if($_SESSION['Pass']==""){
                             <div class="form-group">
                               <label class="control-label" for="User">Username</label>
                               <input type="text" name="User" id="User" value="<?= $result['User']; ?>" class="form-control" required>
-                            </div>  
-                            <div class="form-group">
-                              <label class="control-label" for="Pass">Password</label>
-                              <input type="text" name="Pass" id="Pass" value="<?= $result['Pass']; ?>" class="form-control" required>
-                            </div>  
+                            </div>
                             <div class="form-group">
                               <label class="control-label" for="Email">Email</label>
                               <input type="text" name="Email" id="Email" value="<?= $result['Email']; ?>" class="form-control" required>
@@ -187,7 +181,7 @@ if($_SESSION['Pass']==""){
                                   <select name="Level" value="<?= $result['Level']; ?>"class="form-control" required>
                                    <option value="PM">PM</option>
                                    <option value="Admin">Admin</option>
-                                   <option value="Team Leader">Team Leader</option>
+                                   <option value="Team">Team Leader</option>
                                  </select>    
                                </div>
                                <?php
@@ -230,7 +224,7 @@ if($_SESSION['Pass']==""){
                       </div>  
                       <div class="form-group">
                         <label class="control-label" for="Pass">Password</label>
-                        <input type="text" name="Pass" id="Pass" placeholder="Masukkan Password" class="form-control" required>
+                        <input type="password" name="Pass" id="Pass" placeholder="Masukkan Password" class="form-control" required>
                       </div>  
                       <div class="form-group">
                         <label class="control-label" for="Email">Email</label>
@@ -244,7 +238,7 @@ if($_SESSION['Pass']==""){
                              <option value="" hidden >Masukkan Level User</option>
                              <option value="PM">PM</option>
                              <option value="Admin">Admin</option>
-                             <option value="Team Leader">Team Leader</option>
+                                <option value="Team">Team Leader</option>
                            </select>    
                          </div>
                        </div>

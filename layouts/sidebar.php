@@ -11,7 +11,7 @@
                     <a href="../Team/homeTeam.php"><span class="fa fa-home mr-3"></span> Home</a>
                 <?php endif; ?>
             </li>
-            <?php if (!in_array($_SESSION['Level'], ['Team'])) : ?>
+            <?php if (!in_array($_SESSION['Level'], ['Team', 'Admin'])) : ?>
                 <li>
                     <a href="../pages/KelolaDataUser.php"><span class="fa fa-table mr-3"></span> Data User</a>
                 </li>

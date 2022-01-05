@@ -120,6 +120,33 @@ $counter = require_once '../aksi/data_counter.php';
                 </div>
 
                 <canvas id="myChart"></canvas>
+                <br>
+                <br>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class="text-center">
+                        <th class="col-1" scope="col">No</th>
+                        <th class="col-10" scope="col">Detail</th>
+                        <th class="col-1" scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $total = 0; $i = 1; foreach (array_keys($counter) as $key) : ?>
+                        <?php if (in_array($key, ['tracker'])) continue; ?>
+                        <?php if (!in_array($key, ['mos', 'site_verify', 'site_integrasi'])) continue; ?>
+                        <tr>
+                            <th class="text-center" scope="row"><?= $i++; ?></th>
+                            <td class="pl-4"><?= ucwords(str_replace('_', ' ', $key)); ?></td>
+                            <td class="text-center"><?= $counter[$key]; ?></td>
+                        </tr>
+                        <?php $total += $counter[$key]; ?>
+                    <?php endforeach; ?>
+                    <tr>
+                        <th colspan="2" class="pl-4">Grand Total</th>
+                        <th class="text-center"><?= $total; ?></th>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
