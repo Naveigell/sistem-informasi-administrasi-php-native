@@ -8,7 +8,7 @@
     </ul>
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item active">
-            <a style="color: #FFFFF0;" class="navbar-brand" href="#">Welcome Back, <?php echo $_SESSION['Nama']; ?></a> &nbsp;
+            <a style="color: #FFFFF0;" class="navbar-brand" href="#">Welcome Back, <?php echo $_SESSION['Nama']; ?> <span class="badge badge-pill badge-success"><?= $_SESSION['Level']; ?></span></a> &nbsp;
             <a class="navbar-brand" href="" data-target="#Profil" data-toggle="modal"><img class="btn btn-outline-primary" src="../assets/img/user.png" width="50"></a>
         </li>
     </ul>

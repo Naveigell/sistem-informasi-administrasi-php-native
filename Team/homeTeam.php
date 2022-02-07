@@ -114,7 +114,7 @@ $counter = require_once '../aksi/data_counter.php';
                     <div class="form-group col-3">
                         <form action="">
                             <label for="filter">Filter</label>
-                            <input type="month" class="form-control" id="filter" name="month" value="<?= array_key_exists('month', $_GET) ? $_GET['month'] : ''; ?>">
+                            <input type="date" class="form-control" id="filter" name="date" value="<?= array_key_exists('date', $_GET) ? $_GET['date'] : ''; ?>">
                         </form>
                     </div>
                 </div>
@@ -196,7 +196,7 @@ $counter = require_once '../aksi/data_counter.php';
     );
 
     $(document).ready(function () {
-        $('input[type="month"]').on('change', function () {
+        $('input[type="date"]').on('change', function () {
             $('form').submit();
         })
     })
