@@ -1,4 +1,11 @@
-<nav id="sidebar" class="img" style="background-image: url(images/bg_1.jpg);">
+<style>
+    @media screen and (max-width: 800px) {
+        #sidebar {
+            display: none;
+        }
+    }
+</style>
+<nav id="sidebar" class="img navbar-collapse" style="background-image: url(images/bg_1.jpg);">
     <div class="p-4">
         <a class="navbar-brand" href="#"><img src="../assets/img/logo.png" width="50%"></a> <br><br>
         <ul class="list-unstyled components mb-5">

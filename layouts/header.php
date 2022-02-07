@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#124191;">
+    <button id="hamburger-menu" class="navbar-toggler" type="button" style="display:block;">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <b style="color: #FFFFF0;" class="navbar-brand" href="">PENGELOLAAN DATA ADMINISTRASI INTISEL BALI</b>
+    <b style="color: #FFFFF0; margin-left: 20px;" class="navbar-brand" href="">PENGELOLAAN DATA ADMINISTRASI INTISEL BALI</b>
 
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
