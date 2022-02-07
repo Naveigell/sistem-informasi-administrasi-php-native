@@ -165,10 +165,13 @@ $_SESSION['start_time'] = time();
                                                     $user = mysqli_query($db, "SELECT * FROM tb_site_verify WHERE SiteId='$SiteId'");
                                                     while ($result = mysqli_fetch_assoc($user)) {
                                                     ?>
-                                                    <input type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
+                                                        <input id="site-id-hidden-update-<?= $SiteId;?>" type="text" name="Id" value="<?= $result['SiteId']; ?>" hidden="true">
                                                         <div class="form-group">
                                                             <label class="control-label" for="SiteId">Site Id</label>
-                                                            <input value="<?= $result['SiteId']; ?>" type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                                            <input type="text" data-site-id="<?= $SiteId;?>" value="<?= $result['SiteId']; ?>" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control site-id-update" required>
+                                                            <div class="invalid-feedback">
+                                                                Site Id tidak bisa digunakan
+                                                            </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label" for="SiteName">Site Nama</label>
@@ -260,7 +263,10 @@ $_SESSION['start_time'] = time();
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label class="control-label" for="SiteId">Site Id</label>
-                                            <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control" required>
+                                            <input type="text" name="SiteId" id="SiteId" placeholder="Masukkan Site Id" class="form-control site-id-insert" required>
+                                            <div class="invalid-feedback">
+                                                Site Id tidak bisa digunakan
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="SiteName">Site Nama</label>
@@ -302,10 +308,48 @@ $_SESSION['start_time'] = time();
     </div>
 </div>
 
-<!-- <script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/popper.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/main.js"></script>-->
+<script src="../assets/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.site-id-insert').on('keyup change', function (e) {
+            const siteId = e.target.value;
+            const self   = this;
+
+            $.ajax({
+                url: './../aksi/site_verify/check_site_id.php',
+                method: 'POST',
+                data: {
+                    SiteId: siteId,
+                }
+            }).done(function (e) {
+                $(self).removeClass('is-invalid');
+            }).fail(function (e) {
+                $(self).addClass('is-invalid');
+            })
+        });
+
+        $('.site-id-update').on('keyup change', function (e) {
+            const siteId = e.target.value;
+            const Id     = $('#site-id-hidden-update-' + $(this).data('site-id')).val();
+            const self   = this;
+
+            $.ajax({
+                url: './../aksi/site_verify/check_site_id.php?Id=' + Id,
+                method: 'POST',
+                data: {
+                    SiteId: siteId,
+                }
+            }).done(function (e) {
+                $(self).removeClass('is-invalid');
+            }).fail(function (e) {
+                $(self).addClass('is-invalid');
+            })
+        })
+    })
+</script>
 </body>
 
 </html>
