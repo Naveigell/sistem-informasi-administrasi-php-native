@@ -55,7 +55,6 @@ $_SESSION['start_time'] = time();
 
 <?php include_once './../layouts/header.php'; ?>
 
-
 <div class="col-md-13 d-flex align-items-stretch">
     <?php include_once './../layouts/sidebar.php'; ?>
 
@@ -374,6 +373,8 @@ $_SESSION['start_time'] = time();
         </div>
     </div>
 </div>
+
+<?php include_once './../layouts/footer.php'; ?>
 
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/popper.js"></script>

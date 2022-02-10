@@ -261,6 +261,8 @@ if($_SESSION['Pass']==""){
       </div>
     </div>
 
+    <?php include_once './../layouts/footer.php'; ?>
+
 
 
 <script src="../assets/js/jquery.min.js"></script>

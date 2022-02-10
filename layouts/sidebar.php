@@ -44,12 +44,5 @@
                 <a href="../pages/KelolaDataSiteVerify.php"><span class="fa fa-table mr-3"></span> Data Site Verify</a>
             </li>
         </ul>
-
-        <div class="footer">
-            <p>
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> APDA All rights reserved</a>
-            </p>
-        </div>
-
     </div>
 </nav>
