@@ -385,17 +385,25 @@ $_SESSION['start_time'] = time();
             const siteId = e.target.value;
             const self   = this;
 
+            const siblings = $(this).siblings('.invalid-feedback');
+
             $.ajax({
                 url: './../aksi/site_integrasi/check_site_id.php',
                 method: 'POST',
                 data: {
                     SiteId: siteId,
+                },
+                success: function (result){
+                    $(self).removeClass('is-invalid');
+                },
+                error: function (result) {
+                    $(self).addClass('is-invalid');
+
+                    const error = JSON.parse(result.responseText);
+
+                    siblings.html(error.message);
                 }
-            }).done(function (e) {
-                $(self).removeClass('is-invalid');
-            }).fail(function (e) {
-                $(self).addClass('is-invalid');
-            })
+            });
         });
 
         $('.site-id-update').on('keyup change', function (e) {
@@ -403,17 +411,25 @@ $_SESSION['start_time'] = time();
             const Id     = $('#site-id-hidden-update-' + $(this).data('site-id')).val();
             const self   = this;
 
+            const siblings = $(this).siblings('.invalid-feedback');
+
             $.ajax({
                 url: './../aksi/site_integrasi/check_site_id.php?Id=' + Id,
                 method: 'POST',
                 data: {
                     SiteId: siteId,
+                },
+                success: function (result){
+                    $(self).removeClass('is-invalid');
+                },
+                error: function (result) {
+                    $(self).addClass('is-invalid');
+
+                    const error = JSON.parse(result.responseText);
+
+                    siblings.html(error.message);
                 }
-            }).done(function (e) {
-                $(self).removeClass('is-invalid');
-            }).fail(function (e) {
-                $(self).addClass('is-invalid');
-            })
+            });
         })
     })
 </script>

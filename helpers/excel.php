@@ -36,11 +36,12 @@ $filterTracker = 'SELECT *,
                     INNER JOIN tb_site_integrasi ON tb_mos.SiteId = tb_site_integrasi.SiteId 
                     INNER JOIN tb_site_verify ON tb_mos.SiteId = tb_site_verify.SiteId';
 
-if (array_key_exists('month', $_GET)) {
-    $month = date('m', strtotime($_GET['month']));
-    $year  = date('Y', strtotime($_GET['month']));
+if (array_key_exists('date', $_GET)) {
+    $day   = date('d', strtotime($_GET['date']));
+    $month = date('m', strtotime($_GET['date']));
+    $year  = date('Y', strtotime($_GET['date']));
 
-    $filterTracker .= " WHERE MONTH(tb_mos.CreatedAt) = {$month} AND YEAR(tb_mos.CreatedAt) = {$year}";
+    $filterTracker .= " WHERE DAY(tb_mos.CreatedAt) = {$day} AND MONTH(tb_mos.CreatedAt) = {$month} AND YEAR(tb_mos.CreatedAt) = {$year}";
 }
 
 $tracker        = mysqli_query($db, $filterTracker);

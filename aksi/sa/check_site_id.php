@@ -7,7 +7,17 @@ $Id     = (array_key_exists('Id', $_GET) ? $_GET['Id'] : null);
 if ($SiteId == $Id) {
     http_response_code(200);
 
-    return;
+    exit();
+}
+
+if (strlen($SiteId) != 6) {
+    http_response_code(404);
+
+    echo json_encode([
+        "message" => "Site Id karakter minimal 6",
+    ]);
+
+    exit();
 }
 
 $cek = mysqli_num_rows(mysqli_query($db,"SELECT * FROM tb_sa WHERE SiteId='$SiteId'"));
@@ -18,4 +28,6 @@ if ($cek > 0) {
     echo json_encode([
         "message" => "Site Id sudah terpakai",
     ]);
+
+    exit();
 }
