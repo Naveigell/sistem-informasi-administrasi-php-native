@@ -17,13 +17,12 @@ $filterTracker = 'SELECT *,
                     INNER JOIN tb_site_integrasi ON tb_mos.SiteId = tb_site_integrasi.SiteId 
                     INNER JOIN tb_site_verify ON tb_mos.SiteId = tb_site_verify.SiteId';
 
-if (array_key_exists('date', $_GET)) {
-    $day   = date('d', strtotime($_GET['date']));
-    $month = date('m', strtotime($_GET['date']));
-    $year  = date('Y', strtotime($_GET['date']));
+if (array_key_exists('from', $_GET) && array_key_exists('to', $_GET)) {
+    $from = stripslashes($_GET['from']);
+    $to   = stripslashes($_GET['to']);
 
-    $filterTotal    = " WHERE DAY(CreatedAt) = {$day} AND MONTH(CreatedAt) = {$month} AND YEAR(CreatedAt) = {$year}";
-    $filterTracker .= " WHERE DAY(tb_mos.CreatedAt) = {$day} AND MONTH(tb_mos.CreatedAt) = {$month} AND YEAR(tb_mos.CreatedAt) = {$year}";
+    $filterTotal    = " WHERE DATE(CreatedAt) BETWEEN '{$from}' AND '{$to}'";
+    $filterTracker .= " WHERE DATE(tb_mos.CreatedAt) BETWEEN '{$from}' AND '{$to}'";
 }
 
 $mos            = mysqli_fetch_assoc(mysqli_query($db, "SELECT COUNT(*) AS _total FROM tb_mos {$filterTotal}"))['_total'];

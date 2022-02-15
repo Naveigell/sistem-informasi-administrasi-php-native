@@ -111,10 +111,21 @@ $counter = require_once '../aksi/data_counter.php';
             <div class="card-header">Task Progress Summary</div>
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group col-3">
+                    <div class="form-group col-12">
                         <form action="">
-                            <label for="filter">Filter</label>
-                            <input type="date" class="form-control" id="filter" name="date" value="<?= array_key_exists('date', $_GET) ? $_GET['date'] : ''; ?>">
+                            <label for="filter-from">Filter</label>
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <input type="date" class="form-control" id="filter-from" name="from" value="<?= array_key_exists('from', $_GET) ? $_GET['from'] : ''; ?>">
+                                </div>
+                                <div class="col-1 text-center">sampai</div>
+                                <div class="col-4">
+                                    <input type="date" class="form-control" id="filter-to" name="to" value="<?= array_key_exists('to', $_GET) ? $_GET['to'] : ''; ?>">
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-success">Filter</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -197,12 +208,6 @@ $counter = require_once '../aksi/data_counter.php';
         document.getElementById('myChart'),
         config
     );
-
-    $(document).ready(function () {
-        $('input[type="date"]').on('change', function () {
-            $('form').submit();
-        })
-    })
 </script>
 </body>
 </html>
